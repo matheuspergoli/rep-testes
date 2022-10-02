@@ -12,7 +12,9 @@ function Sobre() {
 				<p className='mb-2 text-2xl'>Essa é a Página Sobre</p>
 				<ul>
 					<li>
-						<Link href='/'>Ir para Página Home</Link>
+						<Link href='/'>
+							<a className='underline'>Ir para Página Home</a>
+						</Link>
 					</li>
 				</ul>
 			</main>

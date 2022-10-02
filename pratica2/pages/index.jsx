@@ -12,7 +12,14 @@ function Home() {
 				<p className='mb-2 text-2xl'>Essa é a Página Home</p>
 				<ul>
 					<li>
-						<Link href='sobre'>Ir para Página Sobre</Link>
+						<Link href='sobre'>
+							<a className='underline'>Ir para Página Sobre</a>
+						</Link>
+					</li>
+					<li>
+						<Link href='produtos'>
+							<a className='underline'>Ir para Página Produtos</a>
+						</Link>
 					</li>
 				</ul>
 			</main>
