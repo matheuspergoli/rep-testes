@@ -13,14 +13,20 @@ function Form() {
 			email: '',
 			password: ''
 		},
-		validationSchema: ValidationSchema
+		validationSchema: ValidationSchema,
+		onSubmit: handleSubmit
 	})
 
+	function handleSubmit() {
+		formik.resetForm()
+		alert('Thank you for your register!')
+	}
+
 	return (
-		<section className='flex flex-col gap-2 w-96'>
+		<section className='flex flex-col gap-2 w-full max-w-sm'>
 			<Title />
 			<form
-				className='flex flex-col gap-2 p-6 rounded-md bg-white'
+				className='p-6 rounded-md bg-white'
 				onSubmit={formik.handleSubmit}>
 				<Input
 					type='text'
@@ -30,7 +36,7 @@ function Form() {
 					placeholder='First Name'
 				/>
 				{formik.errors.firstName ? (
-					<p className='text-right italic text-red-600'>
+					<p className='mb-2 text-right italic text-red-600'>
 						{formik.errors.firstName}
 					</p>
 				) : null}
@@ -42,7 +48,7 @@ function Form() {
 					placeholder='Last Name'
 				/>
 				{formik.errors.lastName ? (
-					<p className='text-right italic text-red-600'>
+					<p className='mb-2 text-right italic text-red-600'>
 						{formik.errors.lastName}
 					</p>
 				) : null}
@@ -54,7 +60,7 @@ function Form() {
 					placeholder='Email Address'
 				/>
 				{formik.errors.email ? (
-					<p className='text-right italic text-red-600'>
+					<p className='mb-2 text-right italic text-red-600'>
 						{formik.errors.email}
 					</p>
 				) : null}
@@ -66,14 +72,14 @@ function Form() {
 					placeholder='Password'
 				/>
 				{formik.errors.password ? (
-					<p className='text-right italic text-red-600'>
+					<p className='mb-2 text-right italic text-red-600'>
 						{formik.errors.password}
 					</p>
 				) : null}
 				<Button />
-				<p className='text-xs text-center'>
+				<p className='mb-2 text-xs text-center'>
 					By clicking the button, you are agreeing to our{' '}
-					<span className='text-red-600'>Terms and Services</span>
+					<span className='block text-red-600'>Terms and Services</span>
 				</p>
 			</form>
 		</section>
