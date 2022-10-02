@@ -23,9 +23,11 @@ function Form() {
 	}
 
 	return (
-		<section className='flex flex-col gap-2 w-full max-w-sm'>
+		<div className='flex flex-col gap-2 w-full max-w-md col-start-2 col-end-3'>
 			<Title />
-			<form className='p-6 rounded-md bg-white' onSubmit={formik.handleSubmit}>
+			<form
+				className='p-6 shadow-2xl rounded-md bg-white'
+				onSubmit={formik.handleSubmit}>
 				<Input
 					type='text'
 					name='firstName'
@@ -84,7 +86,7 @@ function Form() {
 					<span className='block text-red-600'>Terms and Services</span>
 				</p>
 			</form>
-		</section>
+		</div>
 	)
 }
 
