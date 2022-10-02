@@ -1,17 +1,10 @@
-*,
-*::after,
-*::before {
-	margin: 0px;
-	padding: 0px;
-	box-sizing: border-box;
-}
-
-html {
-	font-family: sans-serif;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 body {
 	padding: 20px;
-	color: #fff;
-	background-color: #333;
+	height: 100vh;
+	background-color: hsl(0, 100%, 74%);
+	background-image: url('/bg-intro-desktop.png');
 }

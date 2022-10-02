@@ -1,8 +1,14 @@
+import Head from 'next/head'
+import Form from '../components/Form'
+
 function Home() {
 	return (
-		<div>
-			<h1>NextJS App</h1>
-		</div>
+		<>
+			<Head>
+				<title>Intro Component</title>
+			</Head>
+			<Form />
+		</>
 	)
 }
 
