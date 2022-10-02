@@ -25,15 +25,13 @@ function Form() {
 	return (
 		<section className='flex flex-col gap-2 w-full max-w-sm'>
 			<Title />
-			<form
-				className='p-6 rounded-md bg-white'
-				onSubmit={formik.handleSubmit}>
+			<form className='p-6 rounded-md bg-white' onSubmit={formik.handleSubmit}>
 				<Input
 					type='text'
 					name='firstName'
+					placeholder='First Name'
 					value={formik.values.firstName}
 					onChange={formik.handleChange}
-					placeholder='First Name'
 				/>
 				{formik.errors.firstName ? (
 					<p className='mb-2 text-right italic text-red-600'>
@@ -43,9 +41,9 @@ function Form() {
 				<Input
 					type='text'
 					name='lastName'
+					placeholder='Last Name'
 					value={formik.values.lastName}
 					onChange={formik.handleChange}
-					placeholder='Last Name'
 				/>
 				{formik.errors.lastName ? (
 					<p className='mb-2 text-right italic text-red-600'>
@@ -55,9 +53,9 @@ function Form() {
 				<Input
 					type='text'
 					name='email'
+					placeholder='Email Address'
 					value={formik.values.email}
 					onChange={formik.handleChange}
-					placeholder='Email Address'
 				/>
 				{formik.errors.email ? (
 					<p className='mb-2 text-right italic text-red-600'>
@@ -67,9 +65,9 @@ function Form() {
 				<Input
 					type='text'
 					name='password'
+					placeholder='Password'
 					value={formik.values.password}
 					onChange={formik.handleChange}
-					placeholder='Password'
 				/>
 				{formik.errors.password ? (
 					<p className='mb-2 text-right italic text-red-600'>
@@ -77,7 +75,7 @@ function Form() {
 					</p>
 				) : null}
 				<Button />
-				<p className='mb-2 text-xs text-center'>
+				<p className='text-xs text-center'>
 					By clicking the button, you are agreeing to our{' '}
 					<span className='block text-red-600'>Terms and Services</span>
 				</p>
