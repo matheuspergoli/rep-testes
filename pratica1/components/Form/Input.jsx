@@ -1,15 +1,24 @@
 import React from 'react'
+import Image from 'next/image'
 
 function Input({ type, name, placeholder, value, onChange, error }) {
 	return (
-		<input
-			className={`block w-full mb-2 outline-none p-2 rounded-md border-2 border-borderColor ${error ? 'border-red-600' : ''}`}
-			name={name}
-			type={type}
-			value={value}
-			onChange={onChange}
-			placeholder={placeholder}
-		/>
+		<div
+			className={`flex items-center justify-between mb-2 p-2 border-2 rounded-md ${
+				error ? 'border-red-400' : 'border-borderColor'
+			}`}>
+			<input
+				className='outline-none w-full'
+				name={name}
+				type={type}
+				value={value}
+				onChange={onChange}
+				placeholder={placeholder}
+			/>
+			{error && (
+				<Image src='/icon-error.svg' alt='Error icon' width='25' height='25' />
+			)}
+		</div>
 	)
 }
 
