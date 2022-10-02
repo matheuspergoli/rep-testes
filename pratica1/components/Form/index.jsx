@@ -32,6 +32,7 @@ function Form() {
 					placeholder='First Name'
 					value={formik.values.firstName}
 					onChange={formik.handleChange}
+					error={formik.errors.firstName}
 				/>
 				{formik.errors.firstName ? (
 					<p className='mb-2 text-right italic text-red-600'>
@@ -44,6 +45,7 @@ function Form() {
 					placeholder='Last Name'
 					value={formik.values.lastName}
 					onChange={formik.handleChange}
+					error={formik.errors.lastName}
 				/>
 				{formik.errors.lastName ? (
 					<p className='mb-2 text-right italic text-red-600'>
@@ -56,6 +58,7 @@ function Form() {
 					placeholder='Email Address'
 					value={formik.values.email}
 					onChange={formik.handleChange}
+					error={formik.errors.email}
 				/>
 				{formik.errors.email ? (
 					<p className='mb-2 text-right italic text-red-600'>
@@ -68,6 +71,7 @@ function Form() {
 					placeholder='Password'
 					value={formik.values.password}
 					onChange={formik.handleChange}
+					error={formik.errors.password}
 				/>
 				{formik.errors.password ? (
 					<p className='mb-2 text-right italic text-red-600'>
