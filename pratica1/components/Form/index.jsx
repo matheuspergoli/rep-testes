@@ -23,7 +23,7 @@ function Form() {
 	}
 
 	return (
-		<div className='flex flex-col gap-2 w-full max-w-md col-start-2 col-end-3'>
+		<div className='flex flex-col gap-2 w-full max-w-md md:col-start-2 md:col-end-3 md:mx-0 mx-auto'>
 			<Title />
 			<form
 				className='p-6 shadow-2xl rounded-md bg-white'

@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-	padding: 20px;
+	padding: 10px;
 	height: 100vh;
 	background-color: hsl(0, 100%, 74%);
 	background-image: url('/bg-intro-desktop.png');
