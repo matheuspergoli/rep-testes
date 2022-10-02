@@ -8,7 +8,8 @@ module.exports = {
 		extend: {
 			colors: {
 				bgTitle: '#6055a5',
-				btnGreen: '#38cc8c'
+				btnGreen: '#38cc8c',
+				borderColor: 'hsl(246, 25%, 77%)'
 			}
 		}
 	},
