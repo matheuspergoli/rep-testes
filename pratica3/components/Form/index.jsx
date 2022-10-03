@@ -19,7 +19,16 @@ function Form() {
 		onSubmit: handleSubmit
 	})
 
-	function handleSubmit(event) {
+	async function handleSubmit() {
+		await fetch('/api/form', {
+			method: 'POST',
+			body: JSON.stringify(formik.values)
+		})
+
+		const response = await fetch('/api/form')
+		const json = await response.json()
+		console.log(json)
+
 		formik.resetForm()
 		toast.success('Login efetuado!', {
 			autoClose: 2000
