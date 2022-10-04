@@ -2,6 +2,8 @@ import React from 'react'
 import Head from 'next/head'
 import UserSchema from '../components/UserSchema'
 import { useFormik } from 'formik'
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 function Home() {
 	const [usuarios, setUsuarios] = React.useState()
@@ -26,16 +28,20 @@ function Home() {
 	})
 
 	async function handleSubmit() {
-		formik.resetForm()
-
 		fetch('/api/usuarios', {
 			method: 'POST',
 			body: JSON.stringify(formik.values)
 		})
 
+		toast.success('Usuário Registrado!', {
+			autoClose: 2000
+		})
+
 		const response = await fetch('/api/usuarios')
 		const usuarios = await response.json()
 		setUsuarios(usuarios)
+
+		formik.resetForm()
 	}
 
 	return (
@@ -96,6 +102,7 @@ function Home() {
 						))}
 					</>
 				)}
+				<ToastContainer />
 			</main>
 		</>
 	)
