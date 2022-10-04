@@ -28,15 +28,15 @@ function Home() {
 	})
 
 	async function handleSubmit() {
+		fetch('/api/usuarios', {
+			method: 'POST',
+			body: JSON.stringify(formik.values)
+		})
+
 		formik.resetForm()
 
 		toast.success('Usuário Registrado!', {
 			autoClose: 2000
-		})
-
-		fetch('/api/usuarios', {
-			method: 'POST',
-			body: JSON.stringify(formik.values)
 		})
 
 		const response = await fetch('/api/usuarios')
