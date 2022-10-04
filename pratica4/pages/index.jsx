@@ -1,8 +1,20 @@
+import React from 'react'
 import Head from 'next/head'
 import UserSchema from '../components/UserSchema'
 import { useFormik } from 'formik'
 
 function Home() {
+	const [usuarios, setUsuarios] = React.useState()
+
+	React.useEffect(() => {
+		async function fetchUsuarios() {
+			const response = await fetch('/api/usuarios')
+			const json = await response.json()
+			setUsuarios(json)
+		}
+		fetchUsuarios()
+	}, [])
+
 	const formik = useFormik({
 		initialValues: {
 			firstName: '',
@@ -14,6 +26,8 @@ function Home() {
 	})
 
 	async function handleSubmit() {
+		formik.resetForm()
+
 		fetch('/api/usuarios', {
 			method: 'POST',
 			body: JSON.stringify(formik.values)
@@ -21,7 +35,7 @@ function Home() {
 
 		const response = await fetch('/api/usuarios')
 		const usuarios = await response.json()
-		console.log(usuarios)
+		setUsuarios(usuarios)
 	}
 
 	return (
@@ -30,7 +44,7 @@ function Home() {
 				<title>Home</title>
 			</Head>
 			<main>
-				<h1 className='text-3xl mb-3'>Inscrição de Usuários</h1>
+				<h1 className='text-3xl mb-3 text-white'>Inscrição de Usuários</h1>
 				<form className='flex flex-col gap-2' onSubmit={formik.handleSubmit}>
 					<div>
 						<input
@@ -62,10 +76,26 @@ function Home() {
 							onChange={formik.handleChange}
 						/>
 					</div>
-					<button type='submit' className='p-2 self-start rounded-md bg-black'>
+					<button
+						type='submit'
+						className='p-2 self-start rounded-md text-white bg-black'>
 						Registrar
 					</button>
 				</form>
+
+				{usuarios && (
+					<>
+						<h1 className='text-2xl mt-3 text-white'>Usuários Registrados</h1>
+						{usuarios.map((usuario, index) => (
+							<section
+								key={index}
+								className='rounded-md my-4 p-2 border w-fit text-white'>
+								<p>Nome: {usuario.firstName}</p>
+								<p>Sobrenome: {usuario.lastName}</p>
+							</section>
+						))}
+					</>
+				)}
 			</main>
 		</>
 	)
