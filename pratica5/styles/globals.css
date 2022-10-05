@@ -6,6 +6,11 @@
 	box-sizing: border-box;
 }
 
+:root {
+	--area-porta-altura: 310px;
+	--area-porta-largura: 200px;
+}
+
 html {
 	font-family: sans-serif;
 }

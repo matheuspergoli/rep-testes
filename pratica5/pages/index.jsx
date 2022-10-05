@@ -1,9 +1,10 @@
+import Porta from '../components/Porta'
 import Presente from '../components/Presente'
 
 function Home() {
 	return (
 		<div>
-			<Presente />
+			<Porta />
 		</div>
 	)
 }
