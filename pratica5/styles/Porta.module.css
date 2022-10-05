@@ -1,4 +1,5 @@
 .area {
+  position: relative;
 	display: flex;
   align-items: center;
   flex-direction: column;
@@ -27,6 +28,16 @@
 
 .numero {
 	font-size: 3rem;
+}
+
+.macaneta {
+  position: absolute;
+  top: calc(0.45 * var(--area-porta-altura));
+  align-self: flex-start;
+  width: 20px;
+  height: 20px;
+  border-radius: 10px;
+  background-color: brown;
 }
 
 .chao {
