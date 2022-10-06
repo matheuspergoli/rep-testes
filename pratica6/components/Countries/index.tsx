@@ -11,7 +11,7 @@ interface CountryData {
 
 function Countries({ data }) {
 	return (
-		<main className='flex flex-wrap justify-evenly items-center gap-10 p-10'>
+		<main className='flex flex-wrap justify-evenly items-center gap-10 p-5'>
 			{data.map((country: CountryData, index: number) => (
 				<Country key={index} country={country} />
 			))}

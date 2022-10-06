@@ -2,7 +2,7 @@ import Head from 'next/head'
 import Title from '../components/Title'
 import Countries from '../components/Countries'
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
 	const response = await fetch('https://restcountries.com/v3.1/all')
 	const data = await response.json()
 
