@@ -1,10 +1,25 @@
-import React from 'react'
+import Head from 'next/head'
+import Title from '../components/Title'
+import Countries from '../components/Countries'
 
-function Home() {
+export async function getServerSideProps() {
+	const response = await fetch('https://restcountries.com/v3.1/all')
+	const data = await response.json()
+
+	return {
+		props: { data }
+	}
+}
+
+function Home({ data }) {
 	return (
-		<div>
-			<h1>NextJS App</h1>
-		</div>
+		<>
+			<Head>
+				<title>Home</title>
+			</Head>
+			<Title />
+			<Countries data={data} />
+		</>
 	)
 }
 
