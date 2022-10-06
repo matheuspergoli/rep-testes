@@ -15,18 +15,21 @@ function Country({ country }: CountryData) {
 	const src = country.flags.png
 
 	return (
-		<section className='shadow-sm'>
-			<figure className='block w-40 h-40'>
+		<section className='w-72 shadow-md rounded-b-md'>
+			<figure className='w-full'>
 				<Image
+					className='block w-full h-40 rounded-t-md'
 					loader={() => src}
 					src={src}
 					alt='Country Flag'
 					width={100}
 					height={100}
 					layout='responsive'
+					unoptimized
+					priority
 				/>
 			</figure>
-			<div className='p-2'>
+			<div className='p-4'>
 				<h1 className='font-bold text-xl'>{country.name.common}</h1>
 				<p className='font-semibold'>
 					Population: <span className='font-normal'>{country.population}</span>
