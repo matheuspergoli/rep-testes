@@ -10,6 +10,9 @@ function Home() {
 			<Link href='/estatico2'>
 				<a className='text-xl underline'>Estático #02</a>
 			</Link>
+			<Link href='/estatico3'>
+				<a className='text-xl underline'>Estático #03</a>
+			</Link>
 		</main>
 	)
 }
