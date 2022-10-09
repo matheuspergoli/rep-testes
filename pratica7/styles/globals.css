@@ -1,11 +1,7 @@
-*,
-*::after,
-*::before {
-	margin: 0px;
-	padding: 0px;
-	box-sizing: border-box;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-html {
-	font-family: sans-serif;
+body {
+	padding: 20px;
 }
