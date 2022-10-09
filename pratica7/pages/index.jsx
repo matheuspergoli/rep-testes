@@ -13,6 +13,9 @@ function Home() {
 			<Link href='/estatico3'>
 				<a className='text-xl underline'>Estático #03</a>
 			</Link>
+			<Link href='/estatico4'>
+				<a className='text-xl underline'>Estático #04</a>
+			</Link>
 		</main>
 	)
 }

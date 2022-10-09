@@ -7,7 +7,7 @@ export function getStaticProps() {
 	}
 }
 
-function Estatico2(props) {
+function Estatico3(props) {
 	return (
 		<main>
 			<h1 className='text-3xl font-bold mb-5'>Estático #03</h1>
@@ -19,4 +19,4 @@ function Estatico2(props) {
 	)
 }
 
-export default Estatico2
+export default Estatico3
