@@ -1,8 +1,12 @@
+import Layout from '../components/template/Layout'
+
 function Home() {
 	return (
-		<main>
-			<h1>NextJS App</h1>
-		</main>
+		<Layout
+			titulo='Página Inicial'
+			subtitulo='Estamos construindo um template admin'>
+			<h3>Conteúdo</h3>
+		</Layout>
 	)
 }
 
