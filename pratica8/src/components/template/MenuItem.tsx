@@ -13,7 +13,9 @@ function MenuItem(props: MenuItemProps) {
 			<Link href={props.url}>
 				<a className='flex flex-col justify-center items-center w-20 h-20'>
 					{props.icone}
-					<span className='text-xs font-light text-gray-600'>{props.texto}</span>
+					<span className='text-xs font-light text-gray-600'>
+						{props.texto}
+					</span>
 				</a>
 			</Link>
 		</li>
