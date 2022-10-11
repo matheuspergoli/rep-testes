@@ -1,9 +1,11 @@
 import React from 'react'
-import Image from 'next/image'
 import AuthInput from '../components/auth/AuthInput'
 import { IconeAtencao } from '../components/Icons'
+import { AuthContext } from '../data/context/AuthContext'
 
 function Autenticacao() {
+	const { usuario, loginGoogle } = React.useContext(AuthContext)
+
 	const [erro, setErro] = React.useState(null)
 	const [email, setEmail] = React.useState('')
 	const [senha, setSenha] = React.useState('')
@@ -68,7 +70,7 @@ function Autenticacao() {
 				</button>
 				<hr className='my-6 w-full border-gray-300' />
 				<button
-					onClick={submeter}
+					onClick={loginGoogle}
 					className='w-full px-4 py-3 rounded-lg bg-red-500 text-white hover:bg-red-400'>
 					{modo === 'login' ? 'Entrar com Google' : 'Cadastre-se com Google'}
 				</button>
