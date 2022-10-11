@@ -13,7 +13,7 @@ function MenuItem(props: MenuItemProps) {
 	function renderizarLink() {
 		return (
 			<a
-				className={`flex flex-col justify-center items-center w-20 h-20 text-gray-600 ${props.className}`}>
+				className={`flex flex-col justify-center items-center w-20 h-20 text-gray-600 dark:text-gray-200 ${props.className}`}>
 				{props.icone}
 				<span className='text-xs font-light'>{props.texto}</span>
 			</a>
@@ -21,7 +21,9 @@ function MenuItem(props: MenuItemProps) {
 	}
 
 	return (
-		<li onClick={props.onClick} className='cursor-pointer hover:bg-gray-100'>
+		<li
+			onClick={props.onClick}
+			className='cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800'>
 			{props.url ? (
 				<Link href={props.url}>{renderizarLink()}</Link>
 			) : (
