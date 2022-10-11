@@ -1,5 +1,6 @@
 import React from 'react'
 import { AppContext } from '../../data/context/AppContext'
+import AvatarUsuario from './AvatarUsuario'
 import BotaoAlternarTema from './BotaoAlternarTema'
 import Titulo from './Titulo'
 
@@ -14,8 +15,9 @@ function Cabecalho(props: CabecalhoProps) {
 	return (
 		<div className='flex'>
 			<Titulo titulo={props.titulo} subtitulo={props.subtitulo} />
-			<div className='flex flex-grow justify-end'>
+			<div className='flex flex-grow items-center justify-end gap-3'>
 				<BotaoAlternarTema tema={tema} alternarTema={alternarTema} />
+				<AvatarUsuario />
 			</div>
 		</div>
 	)
