@@ -1,6 +1,12 @@
 import React from 'react'
 import UserSchema from '../../model/UserSchema'
 import { useFormik } from 'formik'
+import { auth } from '../../firebase/config'
+import {
+	createUserWithEmailAndPassword,
+	signInWithEmailAndPassword,
+	signOut
+} from 'firebase/auth'
 
 function Form() {
 	const formik = useFormik({
@@ -12,9 +18,36 @@ function Form() {
 		validationSchema: UserSchema
 	})
 
-	function register() {}
-	function login() {}
-	function logout() {}
+	async function register() {
+		if (formik.values.email && formik.values.senha && formik.isValid) {
+			try {
+				const { email, senha } = formik.values
+				const user = await createUserWithEmailAndPassword(auth, email, senha)
+				formik.resetForm()
+				console.log(user)
+			} catch (error) {
+				console.log(error)
+			}
+		}
+	}
+
+	async function login() {
+		if (formik.values.email && formik.values.senha && formik.isValid) {
+			try {
+				const { email, senha } = formik.values
+				const user = await signInWithEmailAndPassword(auth, email, senha)
+				formik.resetForm()
+				console.log(user)
+			} catch (error) {
+				console.log(error)
+			}
+		}
+	}
+
+	async function logout() {
+		await signOut(auth)
+		formik.resetForm()
+	}
 
 	return (
 		<form className='flex flex-col gap-2' onSubmit={formik.handleSubmit}>
