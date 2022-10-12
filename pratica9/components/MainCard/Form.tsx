@@ -50,13 +50,11 @@ function Form() {
 	}
 
 	async function loginWithGoogle() {
-		if (formik.values.email && formik.values.senha && formik.isValid) {
-			try {
-				const provider = new GoogleAuthProvider()
-				const user = await signInWithPopup(auth, provider)
-			} catch (error) {
-				console.log(error)
-			}
+		try {
+			const provider = new GoogleAuthProvider()
+			const user = await signInWithPopup(auth, provider)
+		} catch (error) {
+			console.log(error)
 		}
 	}
 
