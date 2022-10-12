@@ -10,6 +10,7 @@ import {
 	signInWithPopup
 } from 'firebase/auth'
 import { UserLoggedContext } from '../../context/UserLoggedContext'
+import Button from './Button'
 
 function Form() {
 	const { user } = React.useContext(UserLoggedContext)
@@ -90,30 +91,10 @@ function Form() {
 			) : null}
 
 			<section className='flex flex-col gap-1 mt-5'>
-				<button
-					className='w-full p-2 border rounded-md bg-black text-white'
-					type='submit'
-					onClick={register}>
-					Cadastrar
-				</button>
-				<button
-					className='w-full p-2 border rounded-md bg-black text-white'
-					type='submit'
-					onClick={login}>
-					Logar
-				</button>
-				<button
-					className='w-full p-2 border rounded-md bg-black text-white'
-					type='submit'
-					onClick={loginWithGoogle}>
-					Logar com Google
-				</button>
-				<button
-					className='w-full p-2 border rounded-md bg-black text-white'
-					type='submit'
-					onClick={logout}>
-					Deslogar
-				</button>
+				<Button text='Cadastrar' onClick={register} />
+				<Button text='Logar' onClick={login} />
+				<Button text='Logar com Google' onClick={loginWithGoogle} />
+				<Button text='Deslogar' onClick={logout} />
 			</section>
 			{user?.email && <p className='text-center'>{user.email}</p>}
 		</form>
