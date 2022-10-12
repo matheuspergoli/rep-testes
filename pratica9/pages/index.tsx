@@ -1,8 +1,14 @@
+import Head from 'next/head'
+import MainCard from '../components/MainCard'
+
 function Home() {
 	return (
-		<main>
-			<h1>NextJS App</h1>
-		</main>
+		<>
+			<Head>
+				<title>Formulário</title>
+			</Head>
+			<MainCard />
+		</>
 	)
 }
 
