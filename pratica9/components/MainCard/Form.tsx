@@ -3,12 +3,17 @@ import UserSchema from '../../model/UserSchema'
 import { useFormik } from 'formik'
 import { auth } from '../../firebase/config'
 import {
-	createUserWithEmailAndPassword,
+	signOut,
 	signInWithEmailAndPassword,
-	signOut
+	createUserWithEmailAndPassword,
+	GoogleAuthProvider,
+	signInWithPopup
 } from 'firebase/auth'
+import { UserLoggedContext } from '../../context/UserLoggedContext'
 
 function Form() {
+	const { user } = React.useContext(UserLoggedContext)
+
 	const formik = useFormik({
 		initialValues: {
 			senha: '',
@@ -38,6 +43,17 @@ function Form() {
 				const user = await signInWithEmailAndPassword(auth, email, senha)
 				formik.resetForm()
 				console.log(user)
+			} catch (error) {
+				console.log(error)
+			}
+		}
+	}
+
+	async function loginWithGoogle() {
+		if (formik.values.email && formik.values.senha && formik.isValid) {
+			try {
+				const provider = new GoogleAuthProvider()
+				const user = await signInWithPopup(auth, provider)
 			} catch (error) {
 				console.log(error)
 			}
@@ -91,10 +107,17 @@ function Form() {
 				<button
 					className='w-full p-2 border rounded-md bg-black text-white'
 					type='submit'
+					onClick={loginWithGoogle}>
+					Logar com Google
+				</button>
+				<button
+					className='w-full p-2 border rounded-md bg-black text-white'
+					type='submit'
 					onClick={logout}>
 					Deslogar
 				</button>
 			</section>
+			{user?.email && <p className='text-center'>{user.email}</p>}
 		</form>
 	)
 }
