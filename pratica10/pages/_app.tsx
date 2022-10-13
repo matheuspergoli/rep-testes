@@ -1,11 +1,14 @@
 import '../styles/globals.css'
+import { UserLoggedContextProvider } from '../context/UserLoggedContext'
 import { DarkModeContextProvider } from '../context/DarkModeContext'
 
 function MyApp({ Component, pageProps }) {
 	return (
-		<DarkModeContextProvider>
-			<Component {...pageProps} />
-		</DarkModeContextProvider>
+		<UserLoggedContextProvider>
+			<DarkModeContextProvider>
+				<Component {...pageProps} />
+			</DarkModeContextProvider>
+		</UserLoggedContextProvider>
 	)
 }
 
