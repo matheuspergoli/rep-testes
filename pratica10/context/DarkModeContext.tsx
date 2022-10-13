@@ -9,6 +9,11 @@ export const DarkModeContext = React.createContext(null)
 export function DarkModeContextProvider(props: DarkModeContextProps) {
 	const [darkMode, setDarkMode] = React.useState('dark')
 
+	React.useEffect(() => {
+		const tema = localStorage.getItem('tema')
+		setDarkMode(tema)
+	}, [])
+
 	return (
 		<DarkModeContext.Provider value={{ darkMode, setDarkMode }}>
 			{props.children}

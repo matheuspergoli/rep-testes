@@ -6,8 +6,9 @@ function ButtonDarkMode() {
 	const { darkMode, setDarkMode } = React.useContext(DarkModeContext)
 
 	function changeMode() {
-		if (darkMode === 'dark') setDarkMode('')
-		if (darkMode === '') setDarkMode('dark')
+		const novoTema = darkMode === '' ? 'dark' : ''
+		setDarkMode(novoTema)
+		localStorage.setItem('tema', novoTema)
 	}
 
 	return (
