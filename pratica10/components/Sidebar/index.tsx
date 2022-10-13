@@ -1,4 +1,5 @@
 import { IconeHome, IconeAjustes, IconeSino, IconeSair, IconeLogo } from '../../icons'
+import ButtonDarkMode from './ButtonDarkMode'
 import MenuItem from './MenuItem'
 import MenuItemLogout from './MenuItemLogout'
 
@@ -12,6 +13,7 @@ function Sidebar() {
 				<MenuItem url='/' icone={IconeHome(6)} texto='Início' />
 				<MenuItem url='/ajustes' icone={IconeAjustes(6)} texto='Ajustes' />
 				<MenuItem url='/notificacoes' icone={IconeSino(6)} texto='Notificações' />
+				<ButtonDarkMode />
 			</ul>
 			<ul>
 				<MenuItemLogout icone={IconeSair(6)} texto='Sair' />
