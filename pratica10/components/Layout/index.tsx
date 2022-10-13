@@ -8,7 +8,7 @@ interface LayoutProps {
 
 function Layout(props: LayoutProps) {
 	return (
-		<main className='flex'>
+		<main className='dark flex'>
 			<Sidebar />
 			<Conteudo>{props.children}</Conteudo>
 		</main>
