@@ -10,7 +10,7 @@ interface MenuItemProps {
 function MenuItem(props: MenuItemProps) {
 	return (
 		<Link href={props.url} passHref>
-			<li className='w-20 h-16 p-2 flex flex-col items-center cursor-pointer hover:bg-gray-300'>
+			<li className='w-20 h-16 p-2 flex flex-col items-center cursor-pointer hover:bg-gray-300 dark:hover:bg-gray-700 dark:text-white'>
 				{props.icone}
 				<span className='text-xs'>{props.texto}</span>
 			</li>
