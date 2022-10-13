@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import FormCadastro from '../components/Form/FormCadastro'
+import FormAtual from '../components/Form/FormAtual'
 import AuthLayout from '../components/Layout/AuthLayout'
 
 function Autenticacao() {
@@ -9,7 +9,7 @@ function Autenticacao() {
 				<title>Login / Cadastro</title>
 			</Head>
 			<AuthLayout>
-				<FormCadastro />
+				<FormAtual />
 			</AuthLayout>
 		</>
 	)
