@@ -1,3 +1,4 @@
+import Botao from '../components/Botao'
 import Layout from '../components/Layout'
 import Tabela from '../components/Tabela'
 import Cliente from '../core/Cliente'
@@ -22,6 +23,9 @@ function Home() {
 	return (
 		<main className='flex items-center justify-center w-screen h-screen bg-gradient-to-tr from-purple-500 to-blue-500'>
 			<Layout titulo='Cadastro Simples'>
+				<div className='flex justify-end'>
+					<Botao className='mb-4'>Novo Cliente</Botao>
+				</div>
 				<Tabela
 					clientes={clientes}
 					clienteExcluido={clienteExcluido}
