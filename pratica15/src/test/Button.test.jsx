@@ -1,5 +1,6 @@
-import { describe, expect, it } from 'vitest'
-import { render, screen } from '@testing-library/react'
+import { describe, expect, it, vi, vitest } from 'vitest'
+import { fireEvent, render, screen } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
 import Button from '../components/Button'
 
 describe('<Button />', () => {
@@ -8,5 +9,14 @@ describe('<Button />', () => {
 
 		const text = screen.getByText('Clique aqui')
 		expect(text).toBeInTheDocument()
+	})
+
+	it('Should call function on button click', () => {
+		const fn = vitest.fn()
+		render(<Button onClick={fn} />)
+
+		const button = screen.getByText('Clique aqui')
+		fireEvent.click(button)
+		expect(fn).toBeCalledTimes(1)
 	})
 })

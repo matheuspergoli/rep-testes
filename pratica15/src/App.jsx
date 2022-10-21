@@ -5,7 +5,7 @@ function App() {
 	return (
 		<main className='p-5 bg-gray-900'>
 			<h1 className='text-2xl mb-5 text-white'>React App</h1>
-			<Button />
+			<Button onClick={() => console.log('Clicou')} />
 		</main>
 	)
 }
