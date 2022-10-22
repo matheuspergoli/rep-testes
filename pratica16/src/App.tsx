@@ -1,10 +1,9 @@
 import React from 'react'
-import Header from './components/Header'
 
 function App() {
 	return (
 		<main>
-			<Header title='React App' />
+			<h1>React App</h1>
 		</main>
 	)
 }
