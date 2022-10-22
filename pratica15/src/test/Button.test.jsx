@@ -6,7 +6,7 @@ import Button from '../components/Button'
 describe('<Button />', () => {
 	it('Should render', () => {
 		render(<Button />)
-		const button = screen.getByRole('button', { name: 'Clique aqui' })
+		const button = screen.getByRole('button', { name: 'Clique aqui!' })
 		expect.assertions(1)
 		expect(button).toBeInTheDocument()
 	})
@@ -14,7 +14,7 @@ describe('<Button />', () => {
 	it('Should call function on click', async () => {
 		const fn = vitest.fn()
 		render(<Button onClick={fn} />)
-		const button = screen.getByRole('button', { name: 'Clique aqui' })
+		const button = screen.getByRole('button', { name: 'Clique aqui!' })
 		expect.assertions(1)
 		await userEvent.click(button)
 		await userEvent.click(button)
@@ -23,14 +23,14 @@ describe('<Button />', () => {
 
 	it('Should have the class active:scale-95', () => {
 		render(<Button />)
-		const button = screen.getByRole('button', { name: 'Clique aqui' })
+		const button = screen.getByRole('button', { name: 'Clique aqui!' })
 		expect.assertions(1)
 		expect(button).toHaveClass('active:scale-95')
 	})
 
 	it('Should match the snapshot', () => {
 		render(<Button />)
-		const button = screen.getByRole('button', { name: 'Clique aqui' })
+		const button = screen.getByRole('button', { name: 'Clique aqui!' })
 		expect.assertions(1)
 		expect(button).toMatchSnapshot()
 	})
