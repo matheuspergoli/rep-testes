@@ -20,4 +20,16 @@ describe('<App />', () => {
 		expect(inputTextValue.textContent).toBe('Valor do Input: Matheus Pergoli')
 		expect(input).toHaveValue('Matheus Pergoli')
 	})
+
+	it('Should disable the button', async () => {
+		render(<App />)
+		const counter = screen.getByText('Contador: 0')
+		const btnDecrement = screen.getByRole('button', { name: 'Decrementar' })
+		const btnIncrement = screen.getByRole('button', { name: 'Acrescentar' })
+		await userEvent.click(btnIncrement)
+		expect(counter.textContent).toBe('Contador: 1')
+		await userEvent.click(btnDecrement)
+		expect(counter.textContent).toBe('Contador: 0')
+		expect(btnDecrement).toBeDisabled()
+	})
 })
