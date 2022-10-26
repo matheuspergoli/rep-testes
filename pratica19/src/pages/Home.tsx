@@ -1,6 +1,7 @@
 import React from 'react'
 import { useQuery } from 'react-query'
 import CardFilm from '../components/CardFilm'
+import Loading from '../../public/loading.gif'
 
 interface FilmProps {
 	id: number
@@ -17,7 +18,7 @@ function Home() {
 
 	async function fetchFilms() {
 		const API_TOKEN = import.meta.env.VITE_API_TOKEN
-		const url = `https://api.themoviedb.org/3/movie/popular?api_key=2d2c631e6606e4874e84c06e798636d9&page=${page}`
+		const url = `https://api.themoviedb.org/3/movie/popular?api_key=2d2c631e6606e4874e84c06e798636d9&page=${page}&language=pt-BR`
 		const response = await fetch(url, {
 			headers: {
 				Authorization: `Bearer ${API_TOKEN}`,
@@ -36,7 +37,14 @@ function Home() {
 		setPage((prevPage) => prevPage - 1)
 	}
 
-	if (status === 'loading') return <h1 className='text-2xl'>Carregando</h1>
+	if (status === 'loading') {
+		return (
+			<div className='flex items-center justify-center h-screen w-screen'>
+				<img src={Loading} alt='Loading' className='w-16 h-16' />
+			</div>
+		)
+	}
+
 	return (
 		<>
 			<main className='flex items-center justify-center flex-wrap gap-5 px-5 mt-5 mx-auto max-w-7xl'>
