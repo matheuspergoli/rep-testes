@@ -32,11 +32,7 @@ function Movie() {
 	return (
 		<main>
 			<figure className='relative'>
-				<img
-					className='block w-full h-116 object-cover'
-					src={`https://image.tmdb.org/t/p/original${data?.backdrop_path}`}
-					alt={data?.title}
-				/>
+				<img className='block w-full h-116 object-cover' src={`https://image.tmdb.org/t/p/original${data?.backdrop_path}`} alt={data?.title} />
 				<div className='flex items-center gap-2 p-2 absolute top-0 text-yellow-400'>
 					{IconStar} {data?.vote_average?.toFixed(2)}
 				</div>
@@ -51,7 +47,7 @@ function Movie() {
 			</section>
 			<section className='p-2 text-white'>
 				<h2 className='text-2xl font-bold'>Lançamento</h2>
-				<p className='max-w-5xl'>{(data?.release_date)?.split('-').reverse().join('/')}</p>
+				<p className='max-w-5xl'>{data?.release_date?.split('-').reverse().join('/')}</p>
 			</section>
 			{data?.overview && (
 				<section className='p-2 text-white'>
