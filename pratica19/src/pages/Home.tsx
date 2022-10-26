@@ -28,13 +28,31 @@ function Home() {
 		return json
 	}
 
+	function nextPage() {
+		setPage((prevPage) => prevPage + 1)
+	}
+
+	function prevPage() {
+		setPage((prevPage) => prevPage - 1)
+	}
+
 	if (status === 'loading') return <h1 className='text-2xl'>Carregando</h1>
 	return (
-		<main className='flex items-center justify-center flex-wrap gap-5 mx-auto max-w-7xl'>
-			{data.results.map((film: FilmProps) => (
-				<CardFilm key={film.id} {...film} />
-			))}
-		</main>
+		<>
+			<main className='flex items-center justify-center flex-wrap gap-5 px-5 mt-5 mx-auto max-w-7xl'>
+				{data.results.map((film: FilmProps) => (
+					<CardFilm key={film.id} {...film} />
+				))}
+			</main>
+			<div className='flex gap-5 justify-center items-center my-5 mx-auto max-w-7xl'>
+				<button className='px-4 py-1 text-xl bg-gray-900 text-white disabled:opacity-50' onClick={prevPage} disabled={page === 1}>
+					Anterior
+				</button>
+				<button className='px-4 py-1 text-xl bg-gray-900 text-white' onClick={nextPage}>
+					Próximo
+				</button>
+			</div>
+		</>
 	)
 }
 
