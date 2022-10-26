@@ -12,7 +12,7 @@ interface FilmProps {
 	release_date: string
 }
 
-function MovieInfo() {
+function Movie() {
 	const { id } = useParams()
 	const { data } = useQuery('movie', fetchMovie)
 
@@ -40,4 +40,4 @@ function MovieInfo() {
 	)
 }
 
-export default MovieInfo
+export default Movie

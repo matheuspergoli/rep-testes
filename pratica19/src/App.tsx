@@ -1,7 +1,7 @@
 import React from 'react'
 import { Routes, Route } from 'react-router-dom'
 import Home from './pages/Home'
-import MovieInfo from './pages/MovieInfo'
+import Movie from './pages/Movie'
 import HeadingMenu from './components/HeadingMenu'
 
 function App() {
@@ -10,7 +10,7 @@ function App() {
 			<HeadingMenu />
 			<Routes>
 				<Route path='/' element={<Home />} />
-				<Route path='/movie/:id' element={<MovieInfo />} />
+				<Route path='/movie/:id' element={<Movie />} />
 			</Routes>
 		</>
 	)
