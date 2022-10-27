@@ -48,12 +48,12 @@ function Trending() {
 
 	return (
 		<>
-			<main className='flex items-center justify-center flex-wrap gap-5 px-5 mt-5 mx-auto max-w-7xl'>
+			<main className='flex items-center justify-center flex-wrap gap-5 px-5 mt-5 mx-auto max-w-screen-2xl'>
 				{data?.results?.map((film: FilmProps) => (
 					<CardFilm key={film.id} {...film} />
 				))}
 			</main>
-			<div className='flex gap-5 justify-center items-center my-5 mx-auto max-w-7xl'>
+			<div className='flex gap-5 justify-center items-center my-5 mx-auto max-w-screen-2xl'>
 				<button className='px-4 py-1 text-xl bg-gray-900 text-white disabled:opacity-50' onClick={prevPage} disabled={page === 1}>
 					Anterior
 				</button>

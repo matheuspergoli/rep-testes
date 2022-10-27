@@ -46,7 +46,7 @@ function Home() {
 
 	return (
 		<>
-			<main className='flex items-center justify-center flex-wrap gap-5 px-5 mt-5 mx-auto max-w-7xl'>
+			<main className='flex items-center justify-center flex-wrap gap-5 px-5 mt-5 mx-auto max-w-screen-2xl'>
 				{data.results.map((film: FilmProps) => (
 					<CardFilm key={film.id} {...film} />
 				))}

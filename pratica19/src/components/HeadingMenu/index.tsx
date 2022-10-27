@@ -4,7 +4,7 @@ import { IconFilm } from '../Icons'
 
 function HeadingMenu() {
 	return (
-		<header className='flex items-center gap-20 px-5 py-2 bg-black'>
+		<header className='flex items-center justify-between gap-5 px-4 py-2 bg-black md:justify-start md:gap-20'>
 			<Link to='/'>
 				<div className='flex items-center'>
 					{IconFilm}
