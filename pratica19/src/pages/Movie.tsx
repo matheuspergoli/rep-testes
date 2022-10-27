@@ -2,6 +2,7 @@ import React from 'react'
 import { useParams } from 'react-router-dom'
 import { useQuery } from 'react-query'
 import { IconStar } from '../components/Icons'
+import Loading from '../../public/loading.gif'
 
 interface FilmProps {
 	id: number
@@ -19,7 +20,7 @@ interface FilmProps {
 
 function Movie() {
 	const { id } = useParams()
-	const { data } = useQuery('movie', fetchMovie)
+	const { data, status } = useQuery('movie', fetchMovie)
 
 	async function fetchMovie() {
 		const response = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=2d2c631e6606e4874e84c06e798636d9&language=pt-BR`)
@@ -27,7 +28,13 @@ function Movie() {
 		return json as FilmProps
 	}
 
-	console.log(data)
+	if (status === 'loading') {
+		return (
+			<div className='flex items-center justify-center h-screen w-screen'>
+				<img src={Loading} alt='Loading' className='w-16 h-16' />
+			</div>
+		)
+	}
 
 	return (
 		<main>
