@@ -2,7 +2,6 @@ import React from 'react'
 import { useParams } from 'react-router-dom'
 import { useQuery } from 'react-query'
 import { IconStar } from '../components/Icons'
-import Loading from '../../public/loading.gif'
 
 interface FilmProps {
 	id: number
@@ -31,7 +30,7 @@ function Movie() {
 	if (status === 'loading') {
 		return (
 			<div className='flex items-center justify-center h-screen w-screen'>
-				<img src={Loading} alt='Loading' className='w-16 h-16' />
+				<img src='/loading.gif' alt='Loading' className='w-16 h-16' />
 			</div>
 		)
 	}

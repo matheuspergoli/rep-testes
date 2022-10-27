@@ -1,7 +1,6 @@
 import React from 'react'
 import { useQuery } from 'react-query'
 import CardFilm from '../components/CardFilm'
-import Loading from '../../public/loading.gif'
 
 interface FilmProps {
 	id: number
@@ -40,7 +39,7 @@ function Home() {
 	if (status === 'loading') {
 		return (
 			<div className='flex items-center justify-center h-screen w-screen'>
-				<img src={Loading} alt='Loading' className='w-16 h-16' />
+				<img src='/loading.gif' alt='Loading' className='w-16 h-16' />
 			</div>
 		)
 	}
