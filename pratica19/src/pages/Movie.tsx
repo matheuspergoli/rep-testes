@@ -44,7 +44,7 @@ function Movie() {
 				</div>
 				<figcaption className='text-2xl p-2 absolute bottom-0 font-bold text-amber-500 bg-black'>{data?.title}</figcaption>
 			</figure>
-			<section className='flex items-center gap-5 justify-center p-2 text-white'>
+			<section className='flex items-center gap-5 justify-center flex-wrap p-2 text-white'>
 				{data?.genres.map((genre) => (
 					<p key={genre.id} className='font-bold p-2 bg-black text-amber-500'>
 						{genre.name}
