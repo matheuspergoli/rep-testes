@@ -19,7 +19,7 @@ interface FilmProps {
 
 function Movie() {
 	const { id } = useParams()
-	const { data, status } = useQuery('movie', fetchMovie)
+	const { data, status } = useQuery(['movie', id], fetchMovie)
 
 	async function fetchMovie() {
 		const response = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=2d2c631e6606e4874e84c06e798636d9&language=pt-BR`)
