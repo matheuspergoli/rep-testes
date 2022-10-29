@@ -8,6 +8,7 @@ function App() {
 	return (
 		<main>
 			<Swiper
+				tag='section'
 				modules={[Navigation]}
 				spaceBetween={25}
 				navigation
