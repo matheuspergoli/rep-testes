@@ -25,7 +25,7 @@ function CardMeal(props: { strCategory: string }) {
 
 	return (
 		<section className='m-5'>
-			<h1 className='text-2xl font-bold mb-2'>{props.strCategory}</h1>
+			<h2 className='text-2xl font-bold mb-2 text-amber-500'>{props.strCategory}</h2>
 			<Swiper
 				modules={[Navigation, FreeMode]}
 				slidesPerView={1}
