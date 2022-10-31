@@ -1,11 +1,11 @@
 import React from 'react'
 import { useQuery } from 'react-query'
+import { Link } from 'react-router-dom'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Navigation, FreeMode } from 'swiper'
 import 'swiper/css'
 import 'swiper/css/free-mode'
 import 'swiper/css/navigation'
-import { Link } from 'react-router-dom'
 
 interface MealsProps {
 	meals: {
@@ -42,10 +42,13 @@ function CardMeal(props: { strCategory: string }) {
 					1536: { slidesPerView: 6 }
 				}}>
 				{data?.meals.map((meal) => (
-					<SwiperSlide key={meal.idMeal} className='text-center'>
+					<SwiperSlide key={meal.idMeal} className='text-center transition hover:scale-105'>
 						<Link to={`/meal/${meal.idMeal}`}>
-							<figure className='mx-auto w-60 h-60'>
+							<figure className='relative mx-auto w-60 h-60'>
 								<img src={`${meal.strMealThumb}`} alt={`${meal.strMeal}`} className='w-full h-full' />
+								<figcaption className='flex items-center justify-center p-1 font-semibold text-lg transition absolute inset-0 bg-opacity-75 opacity-0 hover:opacity-100 text-amber-600 bg-black'>
+									{meal.strMeal}
+								</figcaption>
 							</figure>
 						</Link>
 					</SwiperSlide>
