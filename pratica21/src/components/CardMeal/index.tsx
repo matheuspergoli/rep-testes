@@ -5,6 +5,7 @@ import { Navigation, FreeMode } from 'swiper'
 import 'swiper/css'
 import 'swiper/css/free-mode'
 import 'swiper/css/navigation'
+import { Link } from 'react-router-dom'
 
 interface MealsProps {
 	meals: {
@@ -42,9 +43,11 @@ function CardMeal(props: { strCategory: string }) {
 				}}>
 				{data?.meals.map((meal) => (
 					<SwiperSlide key={meal.idMeal} className='text-center'>
-						<figure className='mx-auto w-60 h-60'>
-							<img src={`${meal.strMealThumb}`} alt={`${meal.strMeal}`} className='w-full h-full' />
-						</figure>
+						<Link to={`/meal/${meal.idMeal}`}>
+							<figure className='mx-auto w-60 h-60'>
+								<img src={`${meal.strMealThumb}`} alt={`${meal.strMeal}`} className='w-full h-full' />
+							</figure>
+						</Link>
 					</SwiperSlide>
 				))}
 			</Swiper>
