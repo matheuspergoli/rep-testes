@@ -1,6 +1,7 @@
 import React from 'react'
 import Head from 'next/head'
-import { getSession, signOut } from 'next-auth/react'
+import { dehydrate, QueryClient, useQuery } from 'react-query'
+import { getSession, signOut, useSession } from 'next-auth/react'
 import { GetServerSidePropsContext, GetServerSideProps } from 'next'
 
 export const getServerSideProps: GetServerSideProps = async (context: GetServerSidePropsContext) => {
