@@ -1,9 +1,9 @@
 import React from 'react'
 import Head from 'next/head'
 import { getSession, signOut } from 'next-auth/react'
-import { GetServerSidePropsContext } from 'next'
+import { GetServerSidePropsContext, GetServerSideProps } from 'next'
 
-export async function getServerSideProps(context: GetServerSidePropsContext) {
+export const getServerSideProps: GetServerSideProps = async (context: GetServerSidePropsContext) => {
 	const session = await getSession(context)
 
 	if (!session) {
