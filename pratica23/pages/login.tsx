@@ -32,10 +32,10 @@ function Login() {
 			</Head>
 			<main className='flex flex-col gap-2 items-center justify-center w-screen h-screen'>
 				<figure>
-					<Image priority src='/github-logo.png' alt='Github Logo' width={150} height={150} />
+					<Image priority src='/github-logo.png' alt='Github Logo' width={170} height={170} />
 				</figure>
-				<h1 className='italic text-white'>Acesse a plataforma com Github</h1>
-				<button onClick={() => signIn('github')} className='flex gap-2 items-center rounded-md p-1 font-semibold text-white bg-gray-800'>
+				<h1 className='text-lg italic text-white'>Acesse a plataforma pelo Github</h1>
+				<button onClick={() => signIn('github')} className='flex gap-2 items-center text-lg rounded-md px-2 py-1 font-semibold text-white bg-gray-800'>
 					Github
 					<FaGithub className='text-2xl' />
 				</button>
