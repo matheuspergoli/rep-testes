@@ -1,7 +1,6 @@
 import React from 'react'
 import Head from 'next/head'
-import { dehydrate, QueryClient, useQuery } from 'react-query'
-import { getSession, signOut, useSession } from 'next-auth/react'
+import { getSession, signOut } from 'next-auth/react'
 import { GetServerSidePropsContext, GetServerSideProps } from 'next'
 
 export const getServerSideProps: GetServerSideProps = async (context: GetServerSidePropsContext) => {
@@ -30,7 +29,6 @@ function Home() {
 				<title>Home</title>
 			</Head>
 			<main>
-				<h1>NextJS App</h1>
 				<button onClick={() => signOut()} className='mt-5 rounded-md p-1 font-bold text-lg bg-gray-300'>
 					Sair
 				</button>

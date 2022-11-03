@@ -1,9 +1,9 @@
 import React from 'react'
 import Head from 'next/head'
 import Image from 'next/image'
+import { FaGithub } from 'react-icons/fa'
 import { getSession, signIn } from 'next-auth/react'
 import { GetServerSidePropsContext, GetServerSideProps } from 'next'
-import { FaGithub } from 'react-icons/fa'
 
 export const getServerSideProps: GetServerSideProps = async (context: GetServerSidePropsContext) => {
 	const session = await getSession(context)
@@ -30,7 +30,7 @@ function Login() {
 			<Head>
 				<title>Login</title>
 			</Head>
-			<main className='flex flex-col gap-2 items-center justify-center w-screen h-screen bg-black bg-opacity-90'>
+			<main className='flex flex-col gap-2 items-center justify-center w-screen h-screen'>
 				<figure>
 					<Image priority src='/github-logo.png' alt='Github Logo' width={150} height={150} />
 				</figure>
