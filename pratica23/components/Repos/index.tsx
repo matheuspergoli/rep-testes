@@ -20,7 +20,7 @@ function Repos() {
 
 	async function getRepos() {
 		const name = session?.user?.name?.toLowerCase().replace(' ', '')
-		const response = await fetch(`https://api.github.com/users/${name}/repos?per_page=20&page=${repoPage}`)
+		const response = await fetch(`https://api.github.com/users/${name}/repos?per_page=15&page=${repoPage}`)
 		const json = await response.json()
 		return json as RepoProps[]
 	}
@@ -41,7 +41,7 @@ function Repos() {
 					<button className='px-5 py-1 rounded-md disabled:opacity-50 bg-gray-700' disabled={repoPage === 1} onClick={prevPage}>
 						Prev
 					</button>
-					<button className='px-5 py-1 rounded-md disabled:opacity-50 bg-gray-700' onClick={nextPage} disabled={data?.length < 20}>
+					<button className='px-5 py-1 rounded-md disabled:opacity-50 bg-gray-700' onClick={nextPage} disabled={data?.length < 15}>
 						Next
 					</button>
 				</div>
