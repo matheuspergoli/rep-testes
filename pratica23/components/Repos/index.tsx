@@ -11,28 +11,41 @@ interface RepoProps {
 }
 
 function Repos() {
+	const [repoPage, setRepoPage] = React.useState(1)
 	const { data: session } = useSession()
-	const { data } = useQuery(['repos'], getRepos)
+	const { data, status } = useQuery(['repos', repoPage], getRepos)
+
+	const nextPage = () => setRepoPage((currentPage) => currentPage + 1)
+	const prevPage = () => setRepoPage((currentPage) => currentPage - 1)
 
 	async function getRepos() {
 		const name = session?.user?.name?.toLowerCase().replace(' ', '')
-		const response = await fetch(`https://api.github.com/users/${name}/repos`)
+		const response = await fetch(`https://api.github.com/users/${name}/repos?per_page=20&page=${repoPage}`)
 		const json = await response.json()
 		return json as RepoProps[]
 	}
 
-	if (data) console.log(data)
-
+	if (status === 'loading') return <h1>Carregando...</h1>
 	return (
-		<section>
+		<section className='flex flex-col gap-5'>
 			{data?.map((repo) => (
-				<div key={repo.id} className='m-5 p-2 border w-fit'>
-					<a href={repo.html_url} target='_blank' rel='noreferrer' className='flex items-center gap-1'>
-						Repo: {repo.name} <LinkIcon className='text-xl' />
+				<div key={repo.id} className='p-2 border max-w-xl'>
+					<a href={repo.html_url} target='_blank' rel='noreferrer' className='flex items-center gap-1 w-fit'>
+						{repo.name} <LinkIcon className='text-xl' />
 					</a>
-					<p>Descrição: {repo.description}</p>
+					<p>{repo.description}</p>
 				</div>
 			))}
+			{data ? (
+				<div className='flex gap-2'>
+					<button className='px-5 py-1 rounded-md disabled:opacity-50 bg-gray-700' disabled={repoPage === 1} onClick={prevPage}>
+						Prev
+					</button>
+					<button className='px-5 py-1 rounded-md disabled:opacity-50 bg-gray-700' onClick={nextPage} disabled={data?.length < 20}>
+						Next
+					</button>
+				</div>
+			) : null}
 		</section>
 	)
 }

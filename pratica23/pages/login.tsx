@@ -35,7 +35,9 @@ function Login() {
 					<Image priority src='/github-logo.png' alt='Github Logo' width={170} height={170} />
 				</figure>
 				<h1 className='text-lg italic text-white'>Acesse a plataforma pelo Github</h1>
-				<button onClick={() => signIn('github')} className='flex gap-2 items-center text-lg rounded-md px-2 py-1 font-semibold text-white bg-gray-800'>
+				<button
+					onClick={() => signIn('github')}
+					className='flex gap-2 items-center text-lg rounded-md px-2 py-1 font-semibold text-white bg-gray-800'>
 					Github
 					<FaGithub className='text-2xl' />
 				</button>

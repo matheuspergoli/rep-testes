@@ -1,7 +1,7 @@
 import React from 'react'
 import Image from 'next/image'
-import { TbLogout as LogoutIcon } from 'react-icons/tb'
 import { signOut, useSession } from 'next-auth/react'
+import { TbLogout as LogoutIcon } from 'react-icons/tb'
 
 function Header() {
 	const { data: session } = useSession()
