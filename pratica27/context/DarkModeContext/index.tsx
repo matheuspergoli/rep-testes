@@ -2,14 +2,15 @@ import React from 'react'
 
 interface DarkModeProps {
 	darkMode: boolean
-	setDarkMode?: React.Dispatch<React.SetStateAction<boolean>>
+	setDarkMode: (state: boolean) => void
 }
 
-const defaultState = {
-	darkMode: false
+const defaultStates = {
+	darkMode: false,
+	setDarkMode: () => {}
 }
 
-export const DarkModeContext = React.createContext<DarkModeProps>(defaultState)
+export const DarkModeContext = React.createContext<DarkModeProps>(defaultStates)
 
 export function DarkModeContextProvider(props: { children: React.ReactNode }) {
 	const [darkMode, setDarkMode] = React.useState(false)
