@@ -28,9 +28,9 @@ function Home() {
 			<Head>
 				<title>Home</title>
 			</Head>
-			<main>
+			<section className='h-screen px-10 py-5 dark:text-white dark:bg-gray-800'>
 				<h1>NextJS Home</h1>
-			</main>
+			</section>
 		</>
 	)
 }
