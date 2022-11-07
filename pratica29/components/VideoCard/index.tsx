@@ -8,12 +8,12 @@ interface VideoProps {
 
 function VideoCard(props: VideoProps) {
 	return (
-		<section className='w-40'>
+		<article className='w-48 overflow-hidden'>
 			<a href={props.link} target='_blank' rel='noreferrer'>
-				<img src={props.thumb} alt={props.title} />
-				<h1 className='mt-1'>{props.title}</h1>
+				<img src={props.thumb} alt={props.title} className='transition hover:scale-105' />
+				<h2 className='mt-1 leading-5'>{props.title}</h2>
 			</a>
-		</section>
+		</article>
 	)
 }
 
