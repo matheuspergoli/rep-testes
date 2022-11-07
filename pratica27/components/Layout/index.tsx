@@ -6,7 +6,7 @@ function Layout(props: { children: React.ReactNode }) {
 	const { darkMode } = React.useContext(DarkModeContext)
 
 	return (
-		<main className={darkMode ? 'dark' : ''}>
+		<main className={darkMode}>
 			<Navbar />
 			{props.children}
 		</main>
