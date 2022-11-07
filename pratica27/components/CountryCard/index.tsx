@@ -15,7 +15,7 @@ interface CountryProps {
 
 function CountryCard(props: CountryProps) {
 	return (
-		<article className='w-80 shadow-md rounded-md dark:bg-gray-700'>
+		<article className='max-w-xs w-full shadow-md rounded-md dark:bg-gray-700'>
 			<figure>
 				<img src={props.flags.svg} alt={props.name.common} className='w-full h-60 object-cover rounded-tl-md rounded-tr-md' />
 			</figure>
