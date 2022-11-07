@@ -1,0 +1,21 @@
+{
+	"name": "Matheus Pergoli",
+	"job": "Desenvolvedor Front-end",
+	"github": "matheuspergoli",
+	"playlists": {
+		"jogos": [
+			{
+				"title": "Algum título",
+				"url": "url",
+				"thumb": "Thumbnail do vídeo"
+			}
+		],
+		"front-end": [
+			{
+				"title": "Algum título",
+				"url": "url",
+				"thumb": "Thumbnail do vídeo"
+			}
+		]
+	}
+}
