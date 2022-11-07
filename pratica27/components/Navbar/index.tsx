@@ -13,9 +13,9 @@ function Navbar() {
 	}
 
 	return (
-		<header className='flex items-center justify-between px-10 py-5 shadow-md dark:text-white dark:bg-gray-700'>
+		<header className='flex items-center justify-between px-3 py-5 shadow-md sm:px-10 dark:text-white dark:bg-gray-700'>
 			<Link href='/' className='block w-fit'>
-				<h1 className='text-xl font-bold'>Where in the world?</h1>
+				<h1 className='text-lg font-bold sm:text-xl'>Where in the world?</h1>
 			</Link>
 			{darkMode === 'dark' ? (
 				<button className='flex items-center gap-1' onClick={changeTheme}>
