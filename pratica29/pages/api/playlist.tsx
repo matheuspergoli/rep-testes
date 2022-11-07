@@ -98,6 +98,11 @@ const data = {
 			title: 'RAVE',
 			link: 'https://www.youtube.com/watch?v=AqHlQL3PoD8',
 			thumb: 'https://i.ytimg.com/vi/AqHlQL3PoD8/hqdefault.jpg'
+		},
+		{
+			title: 'Snails - Frogbass',
+			link: 'https://www.youtube.com/watch?v=HanBb8FonWs',
+			thumb: 'https://i.ytimg.com/vi/HanBb8FonWs/hqdefault.jpg'
 		}
 	],
 	podcasts: [
@@ -117,7 +122,7 @@ const data = {
 			thumb: 'https://i.ytimg.com/vi/8ZHE8MLZwD0/hqdefault.jpg'
 		},
 		{
-			title: 'EO LINS [+ VINHETEIRO] - Flow # 130',
+			title: 'LEO LINS [+ VINHETEIRO] - Flow # 130',
 			link: 'https://www.youtube.com/watch?v=0qN2tZAbbRM',
 			thumb: 'https://i.ytimg.com/vi/0qN2tZAbbRM/hqdefault.jpg'
 		},
