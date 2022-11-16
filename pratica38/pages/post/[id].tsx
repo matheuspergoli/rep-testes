@@ -8,7 +8,7 @@ export const getStaticProps: GetStaticProps = async (context: GetStaticPropsCont
 	const queryClient = new QueryClient()
 	const id = JSON.stringify(context?.params?.id)
 
-	await queryClient.prefetchQuery(['post'], () => getSinglePost(id))
+	await queryClient.prefetchQuery(['post', id], () => getSinglePost(id))
 
 	return {
 		props: {
@@ -32,7 +32,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 }
 
 function Post(props: { id: string }) {
-	const { data } = useQuery({ queryKey: ['post'], queryFn: () => getSinglePost(props.id) })
+	const { data } = useQuery({ queryKey: ['post', props.id], queryFn: () => getSinglePost(props.id) })
 
 	return (
 		<>
