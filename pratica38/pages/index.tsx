@@ -2,6 +2,7 @@ import Head from 'next/head'
 import Link from 'next/link'
 import { GetStaticProps } from 'next'
 import getAllPosts from '../service/getAllPosts'
+import { HiExternalLink as LinkIcon } from 'react-icons/hi'
 import { dehydrate, QueryClient, useQuery } from 'react-query'
 
 export const getStaticProps: GetStaticProps = async () => {
@@ -31,7 +32,10 @@ function Home() {
 					{data?.allPosts.map((post) => (
 						<section key={post.id} className='max-w-sm rounded-md border p-2'>
 							<h2 className='text-xl font-bold'>{post.title}</h2>
-							<Link href={`/post/${post.slug}`}>{post.subTitle}</Link>
+							<Link href={`/post/${post.slug}`} className='flex items-center gap-2'>
+								<p>{post.subTitle}</p>
+								<LinkIcon />
+							</Link>
 						</section>
 					))}
 				</div>
