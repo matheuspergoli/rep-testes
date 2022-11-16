@@ -1,17 +1,19 @@
 import Head from 'next/head'
 import getAllPosts from '../../service/getAllPosts'
 import getSinglePost from '../../service/getSinglePost'
-import { GetStaticPaths, GetStaticProps } from 'next'
 import { dehydrate, QueryClient, useQuery } from 'react-query'
+import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from 'next'
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getStaticProps: GetStaticProps = async (context: GetStaticPropsContext) => {
 	const queryClient = new QueryClient()
+	const id = JSON.stringify(context?.params?.id)
 
-	await queryClient.prefetchQuery(['post'], getSinglePost)
+	await queryClient.prefetchQuery(['post'], () => getSinglePost(id))
 
 	return {
 		props: {
-			dehydratedState: dehydrate(queryClient)
+			dehydratedState: dehydrate(queryClient),
+			id
 		},
 		revalidate: 1
 	}
@@ -29,8 +31,8 @@ export const getStaticPaths: GetStaticPaths = async () => {
 	return { paths, fallback: false }
 }
 
-function Post() {
-	const { data } = useQuery({ queryKey: ['post'], queryFn: getSinglePost })
+function Post(props: { id: string }) {
+	const { data } = useQuery({ queryKey: ['post'], queryFn: () => getSinglePost(props.id) })
 
 	return (
 		<>

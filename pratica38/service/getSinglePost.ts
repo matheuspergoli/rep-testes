@@ -2,15 +2,6 @@ import { GraphQLClient, gql } from 'graphql-request'
 
 const endpoint = 'https://graphql.datocms.com/'
 
-const query = gql`
-	query {
-		post {
-			title
-			content
-		}
-	}
-`
-
 interface Post {
 	post: {
 		title: string
@@ -18,7 +9,17 @@ interface Post {
 	}
 }
 
-async function getSinglePost() {
+async function getSinglePost(variable: string) {
+	const query = gql`
+		query {
+			post(filter: {slug: {eq: ${variable}}}) {
+				title
+				content
+				slug
+			}
+		}
+	`
+
 	const graphQLCLient = new GraphQLClient(endpoint, {
 		headers: {
 			'Content-Type': 'application/json',
