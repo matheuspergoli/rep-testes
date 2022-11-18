@@ -6,8 +6,8 @@ function Habilidades() {
 			<Head>
 				<title>Habilidades</title>
 			</Head>
-			<main>
-				<h1>Habilidades</h1>
+			<main className='p-3'>
+				<h1 className='text-4xl font-bold mb-5'>Habilidades</h1>
 			</main>
 		</>
 	)

@@ -7,7 +7,7 @@ function Sobre() {
 				<title>Sobre</title>
 			</Head>
 			<main className='p-3'>
-				<h1 className='text-4xl font-bold mb-5'>Quem sou eu ?</h1>
+				<h1 className='text-4xl relative font-bold mb-5 after:content-[""] after:absolute after:block after:w-28 after:h-2 after:rounded-md after:bg-main-black'>Quem sou eu ?</h1>
 				<section className='text-2xl max-w-7xl'>
 					<p>
 						Sou <span className='font-bold text-main-blue'>Matheus Pergoli</span>, tenho 23 anos, sou de SP - Capital e estudo{' '}

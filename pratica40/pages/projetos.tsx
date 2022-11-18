@@ -6,8 +6,8 @@ function Projetos() {
 			<Head>
 				<title>Projetos</title>
 			</Head>
-			<main>
-				<h1>Projetos</h1>
+			<main className='p-3'>
+				<h1 className='text-4xl font-bold mb-5'>Projetos</h1>
 			</main>
 		</>
 	)

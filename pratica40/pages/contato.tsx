@@ -6,8 +6,8 @@ function Contato() {
 			<Head>
 				<title>Contato</title>
 			</Head>
-			<main>
-				<h1>Contato</h1>
+			<main className='p-3'>
+				<h1 className='text-4xl font-bold mb-5'>Contato</h1>
 			</main>
 		</>
 	)

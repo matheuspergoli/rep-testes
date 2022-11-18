@@ -10,7 +10,7 @@ function Home() {
 				<title>Home</title>
 			</Head>
 			<BackgroundAnimation />
-			<main className='flex flex-col items-center justify-center gap-5 p-2 h-screen w-screen'>
+			<main className='flex flex-col items-center justify-center gap-5 p-3 h-screen w-screen'>
 				<h1 className='text-4xl text-center relative z-50 text-white'>
 					Olá, Meu nome é <span className='font-bold text-main-blue'>Matheus Pergoli</span>
 					<span className='block'>Eu sou um Desenvolvedor Web</span>
