@@ -64,7 +64,7 @@ function Habilidades() {
 				</section>
 				<Title>Principais habilidades</Title>
 				<section className='mx-auto max-w-5xl pl-5 pr-5 pb-5 text-main-black'>
-					<ReactSkillbar skills={skills} colors={colors} animationDelay={250} />
+					<ReactSkillbar skills={skills} colors={colors} animationDelay={250} barBackground={'#555'} />
 				</section>
 			</main>
 		</AnimateFadeDiv>
