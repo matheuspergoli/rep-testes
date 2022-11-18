@@ -3,9 +3,9 @@ import MenuMobile from './MenuMobile'
 import useMedia from '../../hooks/useMedia'
 
 function Navbar() {
-	const desktop = useMedia('(min-width: 768px)')
+	const isDesktop = useMedia('(min-width: 768px)')
 
-	return <>{desktop ? <Menu /> : <MenuMobile />}</>
+	return <>{isDesktop ? <Menu /> : <MenuMobile />}</>
 }
 
 export default Navbar

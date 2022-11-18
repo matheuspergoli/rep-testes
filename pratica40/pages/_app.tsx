@@ -1,7 +1,7 @@
 import React from 'react'
+import { AppProps } from 'next/app'
 import Navbar from '../components/Menu'
 import { useRouter } from 'next/router'
-import type { AppProps } from 'next/app'
 import { Hydrate, QueryClient, QueryClientProvider } from 'react-query'
 
 import '../styles/globals.css'
