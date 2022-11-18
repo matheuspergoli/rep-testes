@@ -5,6 +5,7 @@ import { useRouter } from 'next/router'
 import { Hydrate, QueryClient, QueryClientProvider } from 'react-query'
 
 import '../styles/globals.css'
+import '../styles/animated-classes.css'
 import '../styles/background-animation.css'
 
 export default function App({ Component, pageProps }: AppProps) {

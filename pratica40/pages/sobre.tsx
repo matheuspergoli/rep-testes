@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import AnimateFadeDiv from '../motion/AnimateFadeDiv'
+import SaberMais from '../components/SaberMais'
 
 function Sobre() {
 	return (
@@ -29,6 +30,8 @@ function Sobre() {
 						<span className='font-bold text-main-blue'>Carreira</span> nessa área permanece imensurável.
 					</p>
 				</section>
+
+				<SaberMais />
 			</main>
 		</AnimateFadeDiv>
 	)
