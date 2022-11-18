@@ -1,5 +1,6 @@
 import React from 'react'
 import { AppProps } from 'next/app'
+import Dial from '../components/Dial'
 import Navbar from '../components/Menu'
 import { useRouter } from 'next/router'
 import Footer from '../components/Footer'
@@ -19,6 +20,7 @@ export default function App({ Component, pageProps }: AppProps) {
 				{router.pathname !== '/' ? <Navbar /> : null}
 				<Component {...pageProps} />
 				{router.pathname !== '/' ? <Footer /> : null}
+				{router.pathname !== '/' ? <Dial /> : null}
 			</Hydrate>
 		</QueryClientProvider>
 	)
