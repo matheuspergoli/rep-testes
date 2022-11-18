@@ -1,11 +1,12 @@
 import Head from 'next/head'
 import Link from 'next/link'
+import AnimateScaleDiv from '../motion/AnimateScaleDiv'
 import { BsArrowRightShort as ArrowIcon } from 'react-icons/bs'
 import BackgroundAnimation from '../animation/BackgroundAnimation'
 
 function Home() {
 	return (
-		<>
+		<AnimateScaleDiv>
 			<Head>
 				<title>Home</title>
 			</Head>
@@ -22,7 +23,7 @@ function Home() {
 					<ArrowIcon className='text-4xl font-bold inline-block group-hover:rotate-90 transition' />
 				</Link>
 			</main>
-		</>
+		</AnimateScaleDiv>
 	)
 }
 
