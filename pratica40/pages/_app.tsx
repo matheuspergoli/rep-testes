@@ -2,6 +2,7 @@ import React from 'react'
 import { AppProps } from 'next/app'
 import Navbar from '../components/Menu'
 import { useRouter } from 'next/router'
+import Footer from '../components/Footer'
 import { Hydrate, QueryClient, QueryClientProvider } from 'react-query'
 
 import '../styles/globals.css'
@@ -17,6 +18,7 @@ export default function App({ Component, pageProps }: AppProps) {
 			<Hydrate state={pageProps.dehydratedState}>
 				{router.pathname !== '/' ? <Navbar /> : null}
 				<Component {...pageProps} />
+				{router.pathname !== '/' ? <Footer /> : null}
 			</Hydrate>
 		</QueryClientProvider>
 	)
