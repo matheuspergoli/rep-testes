@@ -1,8 +1,15 @@
+import Head from 'next/head'
+
 function Habilidades() {
 	return (
-		<main>
-			<h1>Habilidades</h1>
-		</main>
+		<>
+			<Head>
+				<title>Habilidades</title>
+			</Head>
+			<main>
+				<h1>Habilidades</h1>
+			</main>
+		</>
 	)
 }
 

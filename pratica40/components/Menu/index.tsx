@@ -1,33 +1,13 @@
-import Link from 'next/link'
-import { useRouter } from 'next/router'
+import Menu from './Menu'
+import MenuMobile from './MenuMobile'
 
-function Menu() {
-	const router = useRouter()
-
+function Navbar() {
 	return (
-		<header className='p-3 bg-main-black'>
-			<nav className='flex items-center gap-4 text-2xl text-white'>
-				<Link href='/' className={router.pathname === '/' ? 'text-main-blue' : ''}>
-					Home
-				</Link>
-				<Link href='/sobre' className={router.pathname === '/sobre' ? 'text-main-blue' : ''}>
-					Sobre
-				</Link>
-				<Link href='/habilidades' className={router.pathname === '/habilidades' ? 'text-main-blue' : ''}>
-					Habilidades
-				</Link>
-				<Link href='/projetos' className={router.pathname === '/projetos' ? 'text-main-blue' : ''}>
-					Projetos
-				</Link>
-				<Link href='/contato' className={router.pathname === '/contato' ? 'text-main-blue' : ''}>
-					Contato
-				</Link>
-				<a href='./curriculo.pdf' download='curriculo'>
-					CV
-				</a>
-			</nav>
-		</header>
+		<>
+			<Menu />
+			<MenuMobile />
+		</>
 	)
 }
 
-export default Menu
+export default Navbar

@@ -1,8 +1,15 @@
+import Head from 'next/head'
+
 function Projetos() {
 	return (
-		<main>
-			<h1>Projetos</h1>
-		</main>
+		<>
+			<Head>
+				<title>Projetos</title>
+			</Head>
+			<main>
+				<h1>Projetos</h1>
+			</main>
+		</>
 	)
 }
 

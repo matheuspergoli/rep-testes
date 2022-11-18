@@ -1,8 +1,15 @@
+import Head from 'next/head'
+
 function Contato() {
 	return (
-		<main>
-			<h1>Contato</h1>
-		</main>
+		<>
+			<Head>
+				<title>Contato</title>
+			</Head>
+			<main>
+				<h1>Contato</h1>
+			</main>
+		</>
 	)
 }
 

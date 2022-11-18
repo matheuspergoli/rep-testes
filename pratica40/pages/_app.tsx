@@ -1,5 +1,5 @@
 import React from 'react'
-import Menu from '../components/Menu'
+import Navbar from '../components/Menu'
 import { useRouter } from 'next/router'
 import type { AppProps } from 'next/app'
 import { Hydrate, QueryClient, QueryClientProvider } from 'react-query'
@@ -14,7 +14,7 @@ export default function App({ Component, pageProps }: AppProps) {
 	return (
 		<QueryClientProvider client={queryClient}>
 			<Hydrate state={pageProps.dehydratedState}>
-				{router.pathname !== '/' ? <Menu /> : null}
+				{router.pathname !== '/' ? <Navbar /> : null}
 				<Component {...pageProps} />
 			</Hydrate>
 		</QueryClientProvider>
