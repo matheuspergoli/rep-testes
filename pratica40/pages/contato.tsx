@@ -1,7 +1,10 @@
+import React from 'react'
 import Head from 'next/head'
+import emailjs from '@emailjs/browser'
 import Title from '../components/Title'
 import { Formik, Form, Field } from 'formik'
 import { SiYahoo as YahooImg } from 'react-icons/si'
+import { ToastContainer, toast } from 'react-toastify'
 import { AiFillGithub as GitImg } from 'react-icons/ai'
 import { FaFacebookF as FaceImg } from 'react-icons/fa'
 import AnimateFadeDiv from '../animation/AnimateFadeDiv'
@@ -9,7 +12,33 @@ import { FaLinkedin as LinkedInImg } from 'react-icons/fa'
 import { SiMicrosoftoutlook as OutlookImg } from 'react-icons/si'
 import ContatoValidationSchema from '../validation/ContatoValidationSchema'
 
+import 'react-toastify/dist/ReactToastify.css'
+
 function Contato() {
+	const [enviando, setEnviando] = React.useState(false)
+
+	function enviarEmail(values: { nome: string; email: string; msg: string }) {
+		const templateParams = {
+			from_name: values.nome,
+			message: values.msg,
+			email: values.email
+		}
+		setEnviando(true)
+		emailjs
+			.send('service_g1xeump', 'template_8gmoiuu', templateParams, '5pOUpb3kg4-JOEzIV')
+			.then((response) => {
+				setEnviando(false)
+				toast.success('Email enviado!', {
+					autoClose: 3000
+				})
+			})
+			.catch((error) => {
+				toast.error('Occoreu algum problema, tente novamente!', {
+					autoClose: 3000
+				})
+			})
+	}
+
 	return (
 		<AnimateFadeDiv>
 			<Head>
@@ -20,8 +49,11 @@ function Contato() {
 				<Formik
 					initialValues={{ nome: '', email: '', msg: '' }}
 					validationSchema={ContatoValidationSchema}
-					onSubmit={(values) => console.log(values)}>
-					{({ errors, touched, resetForm }) => (
+					onSubmit={(values, { resetForm }) => {
+						enviarEmail(values)
+						resetForm()
+					}}>
+					{({ errors, touched }) => (
 						<Form className='flex flex-col gap-5 max-w-lg p-5 mx-auto mb-8 bg-main-black'>
 							<div>
 								<Field id='nome' name='nome' type='text' placeholder='Nome' className='w-full p-1 outline-none text-xl bg-input text-white' />
@@ -50,8 +82,11 @@ function Contato() {
 								{errors.msg && touched.msg && <p className='text-red-500'>{errors.msg}</p>}
 							</div>
 
-							<button type='submit' className='block w-fit text-xl py-1 px-5 ml-auto border-2 text-white'>
-								Enviar
+							<button
+								type='submit'
+								className='block w-fit text-xl py-1 px-5 ml-auto border-2 disabled:opacity-60 text-white'
+								disabled={enviando}>
+								{enviando ? 'Enviando...' : 'Enviar'}
 							</button>
 						</Form>
 					)}
@@ -86,6 +121,7 @@ function Contato() {
 					</a>
 				</section>
 			</main>
+			<ToastContainer />
 		</AnimateFadeDiv>
 	)
 }
