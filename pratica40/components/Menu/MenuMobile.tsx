@@ -32,7 +32,7 @@ function MenuMobile() {
 				)}
 			</button>
 			<header
-				className={`${isMenuMobileActive ? 'block' : 'hidden'} absolute right-3 p-3 transition rounded-md md:hidden bg-main-black`}
+				className={`${isMenuMobileActive ? 'block' : 'hidden'} absolute z-50 right-3 p-3 transition rounded-md md:hidden bg-main-black`}
 				ref={headerRef}>
 				<nav className='flex flex-col items-center gap-4 text-2xl text-white'>
 					<Link href='/' className={router.pathname === '/' ? 'text-main-blue' : ''} onClick={closeMenu}>
