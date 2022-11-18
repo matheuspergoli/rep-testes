@@ -3,11 +3,11 @@ import Head from 'next/head'
 import { GetStaticProps } from 'next'
 import { motion } from 'framer-motion'
 import Title from '../components/Title'
+import ProjetoModal from '../components/ProjetoModal'
 import getAllProjects from '../service/getAllProjects'
 import { Autocomplete, TextField } from '@mui/material'
 import AnimateFadeDiv from '../animation/AnimateFadeDiv'
 import { dehydrate, QueryClient, useQuery } from 'react-query'
-import ProjetoModal from '../components/Projetos/ProjetoModal'
 
 export const getStaticProps: GetStaticProps = async () => {
 	const queryClient = new QueryClient()
