@@ -6,8 +6,8 @@ import { GiHamburgerMenu as MenuIcon } from 'react-icons/gi'
 
 function MenuMobile() {
 	const router = useRouter()
-	const [isMenuMobileActive, setIsMenuMobileActive] = React.useState(false)
 	const headerRef = React.useRef<any>()
+	const [isMenuMobileActive, setIsMenuMobileActive] = React.useState(false)
 
 	function showMenu() {
 		setIsMenuMobileActive((prev) => !prev)
