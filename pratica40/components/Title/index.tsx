@@ -3,6 +3,7 @@ function Title(props: { children: string }) {
 		<h1
 			className={`
 				text-4xl 
+				text-center
 				font-bold 
 				mb-5
 				mx-auto 
