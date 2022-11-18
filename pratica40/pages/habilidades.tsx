@@ -1,7 +1,7 @@
 import Head from 'next/head'
-import SkillBar from 'react-skillbars'
 import Title from '../components/Title'
 import Skills from '../components/Skills'
+import ReactSkillbar from 'react-skillbars'
 import AnimateFadeDiv from '../animation/AnimateFadeDiv'
 import { FaReact as ReactImg } from 'react-icons/fa'
 import { GiBrazilFlag as BrImg } from 'react-icons/gi'
@@ -18,10 +18,9 @@ const skills = [
 	{ type: 'HTML5', level: 80 },
 	{ type: 'CSS3', level: 80 },
 	{ type: 'JavaScript', level: 70 },
-	{ type: 'NextJS', level: 55 },
-	{ type: 'React', level: 55 },
-	{ type: 'TypeScript', level: 40 },
-	{ type: 'SC', level: 50 },
+	{ type: 'NextJS', level: 60 },
+	{ type: 'React', level: 60 },
+	{ type: 'TypeScript', level: 55 },
 	{ type: 'TailwindCSS', level: 65 },
 	{ type: 'Git/Github', level: 60 }
 ]
@@ -65,7 +64,7 @@ function Habilidades() {
 				</section>
 				<Title>Principais habilidades</Title>
 				<section className='mx-auto max-w-5xl pl-5 pr-5 pb-5 text-main-black'>
-					<SkillBar skills={skills} colors={colors} animationDelay={250} />
+					<ReactSkillbar skills={skills} colors={colors} animationDelay={250} />
 				</section>
 			</main>
 		</AnimateFadeDiv>
