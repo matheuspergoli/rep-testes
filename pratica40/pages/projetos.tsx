@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import AnimateFadeDiv from '../motion/AnimateFadeDiv'
+import AnimateFadeDiv from '../animation/AnimateFadeDiv'
 
 function Projetos() {
 	return (

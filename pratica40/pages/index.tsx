@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import Link from 'next/link'
-import AnimateScaleDiv from '../motion/AnimateScaleDiv'
+import AnimateScaleDiv from '../animation/AnimateScaleDiv'
 import { BsArrowRightShort as ArrowIcon } from 'react-icons/bs'
 import BackgroundAnimation from '../animation/BackgroundAnimation'
 
