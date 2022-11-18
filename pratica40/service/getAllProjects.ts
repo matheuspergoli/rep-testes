@@ -4,10 +4,12 @@ const endpoint = 'https://graphql.datocms.com/'
 
 const query = gql`
 	query {
-		allProjetos(orderBy: _createdAt_ASC) {
+		allProjetos(orderBy: _createdAt_ASC, first: "26") {
 			id
 			nome
 			link
+			repositorio
+			tecnologias
 			imagem {
 				url
 			}
@@ -19,6 +21,8 @@ interface Projeto {
 	id: string
 	link: string
 	nome: string
+	repositorio: string
+	tecnologias: string
 	imagem: {
 		url: string
 	}

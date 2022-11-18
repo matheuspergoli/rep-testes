@@ -16,7 +16,7 @@ function ProjetoModal(props: ProjetoModalProps) {
 
 	return (
 		<>
-			<img onClick={handleOpen} src={props.source} alt={props.nome} />
+			<img className='cursor-pointer border-4 w-full border-black' onClick={handleOpen} src={props.source} alt={props.nome} />
 			<Dialog PaperProps={{ style: { backgroundColor: '#333' } }} open={open} onClose={handleClose}>
 				<DialogTitle className='text-2xl text-center text-white'>
 					Tech: <span className='block text-main-blue'>{props.tech}</span>
