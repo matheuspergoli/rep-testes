@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import Title from '../components/Title'
 import AnimateFadeDiv from '../animation/AnimateFadeDiv'
 
 function Contato() {
@@ -8,7 +9,7 @@ function Contato() {
 				<title>Contato</title>
 			</Head>
 			<main className='p-3'>
-				<h1 className='text-4xl font-bold mb-5'>Contato</h1>
+				<Title>Contato</Title>
 			</main>
 		</AnimateFadeDiv>
 	)
