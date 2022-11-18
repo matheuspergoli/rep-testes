@@ -12,12 +12,13 @@ import { dehydrate, QueryClient, useQuery } from 'react-query'
 export const getStaticProps: GetStaticProps = async () => {
 	const queryClient = new QueryClient()
 
-	queryClient.prefetchQuery(['projects'], getAllProjects)
+	await queryClient.prefetchQuery(['projects'], getAllProjects)
 
 	return {
 		props: {
 			dehydratedState: dehydrate(queryClient)
-		}
+		},
+		revalidate: 1
 	}
 }
 
