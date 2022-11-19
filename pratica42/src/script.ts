@@ -1,0 +1,3 @@
+function mostrarPreco(produto: Produto) {
+  
+}
