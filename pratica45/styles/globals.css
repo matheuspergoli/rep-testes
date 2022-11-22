@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+	section.post {
+		@apply flex flex-col gap-10;
+	}
+
+  section.post p {
+		@apply text-xl;
+	}
+}
