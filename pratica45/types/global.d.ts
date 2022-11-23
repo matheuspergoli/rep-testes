@@ -1,8 +1,3 @@
-interface PostSlug {
-	id: string
-	slug: string
-}
-
 interface Post {
 	post: {
 		id: string
@@ -40,6 +35,11 @@ interface PreviewPost {
 
 interface PreviewPosts {
 	allPosts: Array<PreviewPost>
+}
+
+interface PostSlug {
+	id: string
+	slug: string
 }
 
 interface PostSlugs {

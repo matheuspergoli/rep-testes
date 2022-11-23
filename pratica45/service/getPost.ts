@@ -22,7 +22,7 @@ const query = gql`
 	}
 `
 
-async function getPost(variables?: string): Promise<Post> {
+async function getPost(variables: string): Promise<Post> {
 	const graphQLClient = new GraphQLClient(endpoint, {
 		headers: {
 			'Content-Type': 'application/json',

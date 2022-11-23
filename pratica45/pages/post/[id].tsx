@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import Link from 'next/link'
+import parser from 'html-react-parser'
 import getPost from '../../service/getPost'
 import MainTitle from '../../layout/MainTitle'
 import getPostSlugs from '../../service/getPostSlugs'
@@ -51,7 +52,8 @@ function PostPage(props: { id: string }) {
 					<img src={data?.post.author.picture.url} alt='Author image' className='w-12 h-12 rounded-full' />
 					<p className='text-lg font-bold'>{data?.post.author.name}</p>
 				</div>
-				<img src={data?.post.coverImage.url} alt='Cover image' />
+				<img src={data?.post.coverImage.url} alt='Cover image' className='max-h-hero-image object-cover w-full mb-20' />
+				<section className='post max-w-3xl mx-auto'>{parser(data?.post.content as string)}</section>
 			</MainContainer>
 		</>
 	)
