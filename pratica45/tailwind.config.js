@@ -8,6 +8,9 @@ module.exports = {
 			},
 			maxWidth: {
 				'8xl': '1440px'
+			},
+			backgroundColor: {
+				'footer-color': '#222'
 			}
 		}
 	},

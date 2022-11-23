@@ -1,6 +1,6 @@
 function HeroPost(props: Post) {
 	return (
-		<article className='mb-20 sm:mb-40'>
+		<article className='mb-20'>
 			<img src={props.coverImage.url} alt='Post cover' className='max-h-hero-image object-cover w-full mb-5' />
 			<div className='grid grid-cols-1 px-3 gap-5 sm:p-0 lg:grid-cols-2 lg:gap-10'>
 				<h1 className='text-4xl'>{props.title}</h1>

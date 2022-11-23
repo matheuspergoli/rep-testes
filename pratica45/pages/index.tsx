@@ -33,7 +33,7 @@ function Home() {
 			<MainContainer>
 				<MainTitle>Blog.</MainTitle>
 				{heroPost ? <HeroPost {...heroPost} /> : null}
-				<h2 className='text-center text-5xl font-bold mb-20 sm:text-left sm:text-7xl'>Mais artigos</h2>
+				<h2 className='text-center text-5xl font-bold mb-10 sm:text-left sm:text-7xl'>Mais artigos</h2>
 				<div className='grid grid-cols-1 gap-20 lg:grid-cols-2'>
 					{morePosts?.map((post) => (
 						<Post key={post.id} {...post} />
