@@ -1,13 +1,13 @@
 import Head from 'next/head'
 import Post from '../components/Post'
-import { GetServerSideProps } from 'next'
+import { GetStaticProps } from 'next'
 import MainTitle from '../layout/MainTitle'
 import HeroPost from '../components/HeroPost'
 import MainContainer from '../layout/MainContainer'
 import getPreviewPosts from '../service/getPreviewPosts'
 import { dehydrate, QueryClient, useQuery } from 'react-query'
 
-export const getServerSideProps: GetServerSideProps = async () => {
+export const getStaticProps: GetStaticProps = async () => {
 	const queryClient = new QueryClient()
 
 	await queryClient.prefetchQuery(['posts'], getPreviewPosts)
@@ -15,7 +15,8 @@ export const getServerSideProps: GetServerSideProps = async () => {
 	return {
 		props: {
 			dehydratedState: dehydrate(queryClient)
-		}
+		},
+		revalidate: 1
 	}
 }
 
