@@ -1,9 +1,15 @@
-function HeroPost(props: Post) {
+import Link from 'next/link'
+
+function HeroPost(props: PreviewPost) {
 	return (
 		<article className='mb-20'>
-			<img src={props.coverImage.url} alt='Post cover' className='max-h-hero-image object-cover w-full mb-5' />
+			<Link href={`/post/${props.slug}`}>
+				<img src={props.coverImage.url} alt='Post cover' className='max-h-hero-image object-cover w-full mb-5' />
+			</Link>
 			<div className='grid grid-cols-1 px-3 gap-5 sm:p-0 lg:grid-cols-2 lg:gap-10'>
-				<h1 className='text-4xl'>{props.title}</h1>
+				<Link href={`/post/${props.slug}`} className='transition hover:underline'>
+					<h1 className='text-4xl'>{props.title}</h1>
+				</Link>
 				<section>
 					<p className='text-2xl mb-5'>{props.excerpt}</p>
 					<div className='flex items-center gap-5'>

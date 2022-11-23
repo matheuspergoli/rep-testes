@@ -3,14 +3,14 @@ import Post from '../components/Post'
 import { GetServerSideProps } from 'next'
 import MainTitle from '../layout/MainTitle'
 import HeroPost from '../components/HeroPost'
-import getAllPosts from '../service/getAllPosts'
 import MainContainer from '../layout/MainContainer'
+import getPreviewPosts from '../service/getPreviewPosts'
 import { dehydrate, QueryClient, useQuery } from 'react-query'
 
 export const getServerSideProps: GetServerSideProps = async () => {
 	const queryClient = new QueryClient()
 
-	await queryClient.prefetchQuery(['posts'], getAllPosts)
+	await queryClient.prefetchQuery(['posts'], getPreviewPosts)
 
 	return {
 		props: {
@@ -20,7 +20,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
 }
 
 function Home() {
-	const { data } = useQuery({ queryKey: ['posts'], queryFn: getAllPosts })
+	const { data } = useQuery({ queryKey: ['posts'], queryFn: getPreviewPosts })
 
 	const heroPost = data?.allPosts[0]
 	const morePosts = data?.allPosts.slice(1)

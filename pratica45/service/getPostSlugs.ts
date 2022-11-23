@@ -7,29 +7,11 @@ const query = gql`
 		allPosts {
 			id
 			slug
-			title
-			excerpt
-			coverImage {
-				url
-			}
-			author {
-				id
-				name
-				picture {
-					url
-				}
-			}
-			category {
-				id
-				name
-				slug
-			}
-			content(markdown: true)
 		}
 	}
 `
 
-async function getAllPosts(): Promise<Posts> {
+async function getPostSlugs(): Promise<PostSlugs> {
 	const graphQLClient = new GraphQLClient(endpoint, {
 		headers: {
 			'Content-Type': 'application/json',
@@ -39,4 +21,4 @@ async function getAllPosts(): Promise<Posts> {
 	return await graphQLClient.request(query)
 }
 
-export default getAllPosts
+export default getPostSlugs
