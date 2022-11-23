@@ -1,12 +1,11 @@
 import Head from 'next/head'
-import parser from 'html-react-parser'
+import Link from 'next/link'
 import getPost from '../../service/getPost'
 import MainTitle from '../../layout/MainTitle'
 import getPostSlugs from '../../service/getPostSlugs'
 import MainContainer from '../../layout/MainContainer'
 import { dehydrate, QueryClient, useQuery } from 'react-query'
 import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from 'next'
-import Link from 'next/link'
 
 export const getStaticProps: GetStaticProps = async (context: GetStaticPropsContext) => {
 	const queryClient = new QueryClient()
