@@ -18,17 +18,16 @@ export const AuthContext = React.createContext({} as AuthContextType)
 export const AuthContextProvider = (props: { children: React.ReactNode }) => {
 	const [user, setUser] = React.useState<User>()
 
-	function signInWithGoogle() {
+	async function signInWithGoogle() {
 		const provider = new GoogleAuthProvider()
-		signInWithPopup(auth, provider).then((result) => {
-			const { displayName, photoURL, uid } = result.user
+		const result = await signInWithPopup(auth, provider)
+		const { displayName, photoURL, uid } = result.user
 
-			if (!displayName || !photoURL) {
-				throw new Error('Missing information from Google Account.')
-			}
+		if (!displayName || !photoURL) {
+			throw new Error('Missing information from Google Account.')
+		}
 
-			setUser({ id: uid, name: displayName, avatar: photoURL })
-		})
+		setUser({ id: uid, name: displayName, avatar: photoURL })
 	}
 
 	return (
