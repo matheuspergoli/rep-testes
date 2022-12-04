@@ -1,4 +1,3 @@
-import React from 'react'
 import * as Styled from './styles'
 import { Link } from 'react-router-dom'
 import { Button } from '../../components/Button'
