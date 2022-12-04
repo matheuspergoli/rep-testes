@@ -1,5 +1,6 @@
 import React from 'react'
 import * as Styled from './styles'
+import { Link } from 'react-router-dom'
 import { Button } from '../../components/Button'
 import logoImg from '../../assets/images/logo.svg'
 import illustrationImg from '../../assets/images/illustration.svg'
@@ -21,7 +22,7 @@ export const NewRoom = () => {
 						<Button type='submit'>Criar sala</Button>
 					</form>
 					<p>
-						Quer entrar em uma sala existente? <a href='#'>Clique aqui</a>
+						Quer entrar em uma sala existente? <Link to='/'>Clique aqui</Link>
 					</p>
 				</Styled.MainContent>
 			</main>
