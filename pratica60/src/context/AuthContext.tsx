@@ -10,7 +10,7 @@ interface User {
 
 interface AuthContextType {
 	user: User | undefined
-	signInWithGoogle: () => void
+	signInWithGoogle: () => Promise<void>
 }
 
 export const AuthContext = React.createContext({} as AuthContextType)
