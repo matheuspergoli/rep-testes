@@ -1,10 +1,35 @@
+import React from 'react'
 import * as Styled from './styles'
-import { Link } from 'react-router-dom'
+import { ref, set } from 'firebase/database'
+import { useAuth } from '../../hooks/useAuth'
 import { Button } from '../../components/Button'
+import { database } from '../../services/firebase'
 import logoImg from '../../assets/images/logo.svg'
+import { Link, useNavigate } from 'react-router-dom'
 import illustrationImg from '../../assets/images/illustration.svg'
 
 export const NewRoom = () => {
+	const { user } = useAuth()
+	const navigate = useNavigate()
+	const [newRoom, setNewRoom] = React.useState('')
+
+	async function handleCreateRoom(event: React.FormEvent) {
+		event.preventDefault()
+
+		if (newRoom.trim() === '') {
+			return
+		}
+
+		const roomRef = ref(database, 'rooms')
+
+		const firebaseRoom = await set(roomRef, {
+			title: newRoom,
+			authorId: user?.id
+		})
+
+		navigate(`/rooms/${user?.id}`)
+	}
+
 	return (
 		<Styled.Container>
 			<aside>
@@ -16,8 +41,13 @@ export const NewRoom = () => {
 				<Styled.MainContent>
 					<img src={logoImg} alt='Letmeask Logo' />
 					<h2>Criar uma nova sala</h2>
-					<form>
-						<input type='text' placeholder='Nome da sala' />
+					<form onSubmit={handleCreateRoom}>
+						<input
+							type='text'
+							placeholder='Nome da sala'
+							value={newRoom}
+							onChange={(event) => setNewRoom(event.target.value)}
+						/>
 						<Button type='submit'>Criar sala</Button>
 					</form>
 					<p>
