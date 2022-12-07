@@ -1,0 +1,8 @@
+{
+	"expo": {
+		"name": "pratica66",
+		"slug": "pratica66",
+		"version": "1.0.0",
+		"assetBundlePatterns": ["**/*"]
+	}
+}
