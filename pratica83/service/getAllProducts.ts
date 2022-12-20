@@ -6,6 +6,11 @@ interface Props {
 	slug: string
 	price: number
 	description: string
+	category: {
+		id: string
+		name: string
+		slug: string
+	}
 	image: {
 		responsiveImage: {
 			src: string
@@ -21,6 +26,11 @@ const query = gql`
 			slug
 			price
 			description
+			category {
+				id
+				name
+				slug
+			}
 			image {
 				responsiveImage {
 					src
