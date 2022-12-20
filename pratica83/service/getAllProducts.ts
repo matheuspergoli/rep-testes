@@ -1,23 +1,5 @@
 import { GraphQLClient, gql } from 'graphql-request'
 
-interface Props {
-	id: string
-	name: string
-	slug: string
-	price: number
-	description: string
-	category: {
-		id: string
-		name: string
-		slug: string
-	}
-	image: {
-		responsiveImage: {
-			src: string
-		}
-	}
-}
-
 const query = gql`
 	query {
 		allProducts {
@@ -49,7 +31,7 @@ const graphQLClient = new GraphQLClient(endpoint, {
 	}
 })
 
-export const getAllProducts = async (): Promise<Props[]> => {
+export const getAllProducts = async (): Promise<ProductProps[]> => {
 	const data = await graphQLClient.request(query)
 	return data.allProducts
 }

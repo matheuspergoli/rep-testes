@@ -1,23 +1,5 @@
 import { GraphQLClient, gql } from 'graphql-request'
 
-interface Props {
-	id: string
-	name: string
-	slug: string
-	price: number
-	description: string
-	category: {
-		id: string
-		name: string
-		slug: string
-	}
-	image: {
-		responsiveImage: {
-			src: string
-		}
-	}
-}
-
 const query = gql`
 	query ($eq: ItemId = "") {
 		allProducts(filter: { category: { eq: $eq } }) {
@@ -49,8 +31,8 @@ const graphQLClient = new GraphQLClient(endpoint, {
 	}
 })
 
-export const getAllByCategory = async (category: string): Promise<Props[]> => {
-	const variables = { eq: category }
+export const getAllByCategory = async (categoryId: string): Promise<ProductProps[]> => {
+	const variables = { eq: categoryId }
 	const data = await graphQLClient.request(query, variables)
 	return data.allProducts
 }
