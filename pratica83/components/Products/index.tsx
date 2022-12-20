@@ -1,20 +1,36 @@
 import React from 'react'
 import Link from 'next/link'
-import { useQuery } from 'react-query'
-import { getAllProducts } from '../../service'
 
-export const Products = () => {
-	const { data: products } = useQuery({ queryKey: 'products', queryFn: getAllProducts })
+interface Props {
+	products: {
+		id: string
+		name: string
+		slug: string
+		price: number
+		description: string
+		category: {
+			id: string
+			name: string
+			slug: string
+		}
+		image: {
+			responsiveImage: {
+				src: string
+			}
+		}
+	}[]
+}
 
+export const Products = (props: Props) => {
 	return (
 		<section>
 			<h1 className='mb-5 text-3xl font-bold'>Products</h1>
 			<div className='grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4'>
-				{products?.map((product) => (
+				{props.products?.map((product) => (
 					<div key={product.id} className='rounded-lg border bg-white shadow-lg'>
 						<figure className='relative'>
 							<Link
-								href={`/category/${product.category.slug}`}
+								href={`/category/${product.category.id}`}
 								className='absolute rounded-tl-lg bg-gray-800 p-1 text-white hover:bg-gray-700'>
 								{product.category.name}
 							</Link>

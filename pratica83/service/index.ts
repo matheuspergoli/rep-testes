@@ -1,3 +1,5 @@
 export * from './getProduct'
 export * from './getAllProducts'
 export * from './getProductsSlugs'
+export * from './getAllCategories'
+export * from './getAllByCategory'
