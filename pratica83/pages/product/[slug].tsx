@@ -48,8 +48,8 @@ function Product(props: { slug: string }) {
 					className='mb-5 block w-fit rounded-md bg-blue-500 px-3 py-2 text-white transition hover:bg-blue-700'>
 					Back to home
 				</Link>
-				<section className='grid grid-cols-1 gap-10 sm:grid-cols-2'>
-					<figure className='h-96 sm:h-full'>
+				<section className='grid grid-cols-1 gap-10 sm:grid-cols-2 sm:gap-0'>
+					<figure className='h-96 sm:h-[500px]'>
 						<img
 							src={product?.image.responsiveImage.src}
 							alt={product?.name}
@@ -61,7 +61,7 @@ function Product(props: { slug: string }) {
 							<h2 className='text-2xl font-bold'>Description</h2>
 							<p className='text-lg'>{product?.description}</p>
 							<h2 className='text-2xl font-bold'>Price</h2>
-							<p className='text-lg'>{product?.price}</p>
+							<p className='text-lg'>R$ {product?.price}</p>
 						</div>
 						<div className='flex gap-5'>
 							<button className='rounded-md bg-blue-500 px-3 py-2 text-white transition hover:bg-blue-700'>
