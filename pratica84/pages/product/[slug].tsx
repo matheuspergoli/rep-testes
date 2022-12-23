@@ -32,7 +32,11 @@ export const getStaticProps: GetStaticProps = async (context: GetStaticPropsCont
 	}
 }
 
-function Product(props: { slug: string }) {
+interface Props {
+	slug: string
+}
+
+function Product(props: Props) {
 	const { data } = useQuery({
 		queryKey: ['product', props.slug],
 		queryFn: () => getSingleProduct(props.slug)
