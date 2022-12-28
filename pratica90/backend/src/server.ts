@@ -1,18 +1,28 @@
 import dotenv from 'dotenv'
-import { router } from './routes'
-import { connect } from './database/connect'
+import { db } from './database/connect'
 import express, { Request, Response } from 'express'
 
 dotenv.config()
-connect()
 const app = express()
 const port = 8080
 
 app.use(express.json())
-app.use(router)
 
-app.get('/', (req: Request, res: Response) => {
-	res.send('Hello World!')
+app.get('/funcionarios', (req: Request, res: Response) => {
+	db.query('SELECT * FROM funcionarios', (error, results) => {
+		res.status(200).json(results)
+	})
+})
+
+app.post('/funcionarios', (req: Request, res: Response) => {
+	const { nome, sobrenome, profissao, idade } = req.body
+	db.query(
+		'INSERT INTO funcionarios (nome, sobrenome, profissao, idade) VALUES (?, ?, ?, ?)',
+		[nome, sobrenome, profissao, idade],
+		(error, results) => {
+			res.status(201).json(results)
+		}
+	)
 })
 
 app.listen(port, () => {

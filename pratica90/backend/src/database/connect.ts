@@ -1,11 +1,16 @@
-import mongoose from 'mongoose'
+import mysql from 'mysql2'
 
-export const connect = (url = process.env.MONGODB_URI as string) => {
-	mongoose.connect(url, (error) => {
-		if (error) {
-			console.log('Error connecting to database: ', error)
-		} else {
-			console.log('Connected to database')
-		}
-	})
-}
+export const db = mysql.createConnection({
+	host: 'localhost',
+	user: 'root',
+	password: 'Weewefamilha1999.22',
+	database: 'empresa'
+})
+
+db.connect((error) => {
+	if (error) {
+		console.log(error)
+	} else {
+		console.log('MySQL Connected')
+	}
+})
