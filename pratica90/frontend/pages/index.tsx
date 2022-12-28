@@ -1,13 +1,13 @@
 import React from 'react'
 import Head from 'next/head'
-import { getAllUsers } from '../service/getAllUsers'
 import { QueryClient, useQuery, dehydrate } from 'react-query'
+import { getAllFuncionarios } from '../service/getAllFuncionarios'
 import { GetServerSideProps, GetServerSidePropsContext } from 'next'
 
 export const getServerSideProps: GetServerSideProps = async (context: GetServerSidePropsContext) => {
 	const queryClient = new QueryClient()
 
-	await queryClient.prefetchQuery('users', getAllUsers)
+	await queryClient.prefetchQuery('users', getAllFuncionarios)
 
 	return {
 		props: {
@@ -17,7 +17,7 @@ export const getServerSideProps: GetServerSideProps = async (context: GetServerS
 }
 
 function Home() {
-	const { data } = useQuery({ queryKey: 'users', queryFn: getAllUsers })
+	const { data } = useQuery({ queryKey: 'users', queryFn: getAllFuncionarios })
 
 	console.log(data)
 

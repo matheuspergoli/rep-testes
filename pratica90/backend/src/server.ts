@@ -1,12 +1,19 @@
 import dotenv from 'dotenv'
+dotenv.config()
+
 import { db } from './database/connect'
 import express, { Request, Response } from 'express'
 
-dotenv.config()
 const app = express()
 const port = 8080
 
 app.use(express.json())
+
+app.use((req, res, next) => {
+	res.header('Access-Control-Allow-Origin', '*')
+	res.header('Access-Control-Allow-Headers', '*')
+	next()
+})
 
 app.get('/funcionarios', (req: Request, res: Response) => {
 	db.query('SELECT * FROM funcionarios', (error, results) => {
