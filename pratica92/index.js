@@ -24,6 +24,9 @@ const http = require('http')
 // console.log('Will read file!')
 
 // Server
+const data = fs.readFileSync(`${__dirname}/dev-data/data.json`, 'utf-8')
+const dataObj = JSON.parse(data)
+
 const server = http.createServer((request, response) => {
 	const pathName = request.url
 
@@ -31,9 +34,17 @@ const server = http.createServer((request, response) => {
 		response.end('This the Overview Page!')
 	} else if (pathName == '/product') {
 		response.end('This the Product Page!')
+	} else if (pathName == '/api') {
+		response.writeHead(200, {
+			'Content-type': 'application/json'
+		})
+
+		response.end(data)
 	} else {
-		response.writeHead(404)
-		response.end('Page not found!')
+		response.writeHead(404, {
+			'Content-type': 'text/html'
+		})
+		response.end('<h1>Page not found!</h1>')
 	}
 })
 
