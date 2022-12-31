@@ -14,6 +14,24 @@ app.get('/api/tours', (req, res) => {
 	})
 })
 
+app.get('/api/tours/:id', (req, res) => {
+	console.log(req.params)
+
+	const tour = tours.find((el) => el.id === parseInt(req.params.id))
+
+	if (!tour) {
+		return res.status(404).json({
+			status: 'fail',
+			message: 'Invalid ID'
+		})
+	}
+
+	res.status(200).json({
+		status: 'success',
+		data: { tour }
+	})
+})
+
 app.post('/api/tours', (req, res) => {
 	const newId = tours[tours.length - 1].id + 1
 	const newTour = Object.assign({ id: newId }, req.body)
@@ -25,6 +43,24 @@ app.post('/api/tours', (req, res) => {
 			status: 'success',
 			data: { tour: newTour }
 		})
+	})
+})
+
+app.patch('/api/tours/:id', (req, res) => {
+	const selectedTour = tours.find((el) => el.id === parseInt(req.params.id))
+
+	if (!selectedTour) {
+		return res.status(404).json({
+			status: 'fail',
+			message: 'Invalid ID'
+		})
+	}
+
+	res.status(200).json({
+		status: 'success',
+		data: {
+			tour: '<Updated tour here>'
+		}
 	})
 })
 
