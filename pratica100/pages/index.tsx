@@ -1,7 +1,7 @@
 import React from 'react'
 import Head from 'next/head'
 import { GetServerSideProps } from 'next'
-import { getAllFuncionarios, createFuncionario } from '../service'
+import { getAllFuncionarios, createFuncionario, deleteFuncionario } from '../service'
 import { QueryClient, useQuery, useMutation, useQueryClient, dehydrate } from 'react-query'
 
 export const getServerSideProps: GetServerSideProps = async () => {
@@ -17,26 +17,32 @@ export const getServerSideProps: GetServerSideProps = async () => {
 }
 
 interface Funcionario {
-	id: number
+	id?: string
 	nome: string
 	sobrenome: string
 	cargo: string
-	salario: number
-	idade: number
+	salario: string | number
+	idade: string | number
 }
 
 function Home() {
-	const [funcionario, setFuncionario] = React.useState({
+	const [funcionario, setFuncionario] = React.useState<Funcionario>({
 		nome: '',
 		sobrenome: '',
 		cargo: '',
-		salario: 0,
-		idade: 0
+		salario: '',
+		idade: ''
 	})
+	const { data } = useQuery<Funcionario[]>({ queryKey: 'funcionarios', queryFn: getAllFuncionarios })
 	const queryClient = useQueryClient()
-	const { data } = useQuery<Funcionario[]>({ queryKey: ['funcionarios'], queryFn: getAllFuncionarios })
 
 	const createUserMutation = useMutation(createFuncionario, {
+		onSuccess: () => {
+			queryClient.invalidateQueries('funcionarios')
+		}
+	})
+
+	const deleteUserMutation = useMutation(deleteFuncionario, {
 		onSuccess: () => {
 			queryClient.invalidateQueries('funcionarios')
 		}
@@ -49,8 +55,18 @@ function Home() {
 			</Head>
 			<main className='container mx-auto p-3'>
 				<h1 className='mb-5 text-2xl font-bold'>Funcionários</h1>
-
-				<form className='mb-10 flex flex-col gap-3' onSubmit={(e) => e.preventDefault()}>
+				<form
+					className='mb-10 flex flex-col gap-3'
+					onSubmit={(e) => {
+						e.preventDefault()
+						setFuncionario({
+							nome: '',
+							sobrenome: '',
+							cargo: '',
+							salario: '',
+							idade: ''
+						})
+					}}>
 					<input
 						type='text'
 						placeholder='Nome'
@@ -88,7 +104,6 @@ function Home() {
 						className='w-60 rounded-md border p-2'
 						onChange={(e) => setFuncionario({ ...funcionario, idade: Number(e.target.value) })}
 					/>
-
 					<button
 						type='submit'
 						className='w-60 rounded-md bg-blue-500 px-3 py-2 text-white transition hover:bg-blue-600'
@@ -100,6 +115,11 @@ function Home() {
 				<section className='flex flex-col gap-5'>
 					{data?.map((funcionario) => (
 						<article key={funcionario.id} className='rounded-md border p-3'>
+							<button
+								className='rounded-md bg-red-500 px-3 py-2 text-white'
+								onClick={() => deleteUserMutation.mutate(funcionario.id as string)}>
+								Deletar
+							</button>
 							<p>
 								<span className='font-bold'>Nome:</span> {funcionario.nome} {funcionario.sobrenome}
 							</p>

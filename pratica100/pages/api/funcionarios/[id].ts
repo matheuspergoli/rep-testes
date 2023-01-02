@@ -5,13 +5,13 @@ const prisma = new PrismaClient()
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 	const { method } = req
-	const { id } = req.query
+	const id = req.query.id as string
 
 	switch (method) {
 		case 'GET':
 			const getFuncionario = await prisma.funcionario.findUnique({
 				where: {
-					id: Number(id)
+					id: id
 				}
 			})
 			res.status(200).json(getFuncionario)
@@ -19,7 +19,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 		case 'DELETE':
 			const deleteFuncionario = await prisma.funcionario.delete({
 				where: {
-					id: Number(id)
+					id
 				}
 			})
 			res.status(200).json(deleteFuncionario)

@@ -6,17 +6,17 @@ generator client {
 }
 
 datasource db {
-  provider = "mysql"
+  provider = "mongodb"
   url      = env("DATABASE_URL")
 }
 
 model Funcionario {
-  id        Int    @id @default(autoincrement())
-  nome      String @db.VarChar(255)
-  sobrenome String @db.VarChar(255)
-  cargo     String @db.VarChar(255)
-  salario   Float  @default(0)
-  idade     Int    @default(0)
+  id        String @id @default(auto()) @map("_id") @db.ObjectId
+  nome      String @db.String
+  sobrenome String @db.String
+  cargo     String @db.String
+  salario   Float  @db.Double
+  idade     Int    @db.Int
 
   @@map("funcionarios")
 }

@@ -2,8 +2,8 @@ interface Funcionario {
 	nome: string
 	sobrenome: string
 	cargo: string
-	salario: number
-	idade: number
+	salario: string | number
+	idade: string | number
 }
 
 export const createFuncionario = async (funcionario: Funcionario) => {
