@@ -1,6 +1,7 @@
 import React from 'react'
 import Head from 'next/head'
 import { GetServerSideProps } from 'next'
+import { Sidebar, Menu, MenuItem, SubMenu } from 'react-pro-sidebar'
 import { getFuncionarios, createFuncionarios, deleteFuncionarios } from '../service'
 import { QueryClient, useQuery, useQueryClient, useMutation, dehydrate } from 'react-query'
 
@@ -48,6 +49,18 @@ function Home() {
 			<Head>
 				<title>NextJS App</title>
 			</Head>
+			<div className='flex h-full'>
+				<Sidebar>
+					<Menu>
+						<SubMenu label='Charts'>
+							<MenuItem> Pie charts </MenuItem>
+							<MenuItem> Line charts </MenuItem>
+						</SubMenu>
+						<MenuItem> Documentation </MenuItem>
+						<MenuItem> Calendar </MenuItem>
+					</Menu>
+				</Sidebar>
+			</div>
 			<main className='container mx-auto p-3'>
 				<h1 className='mb-10 text-2xl font-bold'>NextJS App</h1>
 				<form
