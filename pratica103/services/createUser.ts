@@ -1,10 +1,19 @@
-interface User {
+interface ISignUpUser {
 	name: string
 	email: string
 	password: string
 }
 
-export const createUser = async (user: User) => {
+interface ICreateUserResponse {
+	data: {
+		id: string
+		token: string
+		message: string
+	}
+	response: Response
+}
+
+export const createUser = async (user: ISignUpUser) => {
 	const response = await fetch('/api/users', {
 		method: 'POST',
 		headers: {
@@ -12,6 +21,6 @@ export const createUser = async (user: User) => {
 		},
 		body: JSON.stringify(user)
 	})
-	const data = await response.json()
-	return data
+	const data = (await response.json()) as ICreateUserResponse['data']
+	return { data, response }
 }
