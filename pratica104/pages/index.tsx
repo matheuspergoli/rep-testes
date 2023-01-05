@@ -1,9 +1,9 @@
 import React from 'react'
 import Head from 'next/head'
 import { GetServerSideProps } from 'next'
-import { motion, AnimatePresence } from 'framer-motion'
 import { getGames, addGames, deleteGames } from '../service'
 import { useSession, signIn, signOut } from 'next-auth/react'
+import { motion, AnimatePresence, Reorder } from 'framer-motion'
 import { QueryClient, useQuery, useQueryClient, useMutation, dehydrate } from 'react-query'
 
 export const getServerSideProps: GetServerSideProps = async () => {
@@ -34,6 +34,7 @@ function Home() {
 	const { data: session, status } = useSession()
 	const [game, setGame] = React.useState({} as ICreatedGame)
 	const { data } = useQuery<IGames[]>({ queryKey: 'games', queryFn: getGames })
+	const [qtdData, setQtdData] = React.useState(data)
 
 	const addGameMutation = useMutation(addGames, {
 		onSuccess: () => {
@@ -46,6 +47,10 @@ function Home() {
 			queryClient.invalidateQueries('games')
 		}
 	})
+
+	React.useEffect(() => {
+		setQtdData(data)
+	}, [data])
 
 	return (
 		<>
@@ -100,26 +105,29 @@ function Home() {
 					)}
 				</section>
 				<AnimatePresence mode='popLayout'>
-					{data?.map((game) => (
-						<motion.div
-							layout
-							key={game.id}
-							className='mb-5 rounded-md border p-2'
-							initial={{ scale: 0.8, opacity: 0 }}
-							animate={{ scale: 1, opacity: 1 }}
-							exit={{ scale: 0.8, opacity: 0 }}
-							transition={{ type: 'tween' }}>
-							<button
-								className='rounded-md bg-red-500 px-3 py-2 text-white'
-								onClick={() => deleteGameMutation.mutate(game.id)}>
-								Delete
-							</button>
-							<h2 className='text-xl font-bold'>{game.name}</h2>
-							<p className=''>{game.description}</p>
-							<p className=''>Adicionado por: {game.addedBy}</p>
-							<p>Adicionado: {Intl.DateTimeFormat('pt-BR').format(new Date(game.createdAt))}</p>
-						</motion.div>
-					))}
+					<Reorder.Group axis='y' values={qtdData as any} onReorder={setQtdData}>
+						{qtdData?.map((game) => (
+							<Reorder.Item key={game.id} value={game}>
+								<motion.div
+									layout
+									className='mb-5 rounded-md border p-2'
+									initial={{ scale: 0.8, opacity: 0 }}
+									animate={{ scale: 1, opacity: 1 }}
+									exit={{ scale: 0.8, opacity: 0 }}
+									transition={{ type: 'tween' }}>
+									<button
+										className='rounded-md bg-red-500 px-3 py-2 text-white'
+										onClick={() => deleteGameMutation.mutate(game.id)}>
+										Delete
+									</button>
+									<h2 className='text-xl font-bold'>{game.name}</h2>
+									<p className=''>{game.description}</p>
+									<p className=''>Adicionado por: {game.addedBy}</p>
+									<p>Adicionado: {Intl.DateTimeFormat('pt-BR').format(new Date(game.createdAt))}</p>
+								</motion.div>
+							</Reorder.Item>
+						))}
+					</Reorder.Group>
 				</AnimatePresence>
 			</main>
 		</>
