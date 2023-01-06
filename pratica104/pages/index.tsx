@@ -32,6 +32,7 @@ interface ICreatedGame {
 function Home() {
 	const queryClient = useQueryClient()
 	const { data: session, status } = useSession()
+	const firstInputRef = React.useRef<HTMLInputElement>(null)
 	const [game, setGame] = React.useState({} as ICreatedGame)
 	const { data } = useQuery<IGames[]>({ queryKey: 'games', queryFn: getGames })
 	const [qtdData, setQtdData] = React.useState(data)
@@ -59,9 +60,16 @@ function Home() {
 			</Head>
 			<main className='container mx-auto p-3'>
 				<h1 className='mb-10 text-2xl font-bold'>Games</h1>
-				<form className='mb-10 flex flex-col gap-3' onSubmit={(e) => e.preventDefault()}>
+				<form
+					className='mb-10 flex flex-col gap-3'
+					onSubmit={(e) => {
+						e.preventDefault()
+						firstInputRef.current?.focus()
+						e.currentTarget.reset()
+					}}>
 					<input
 						type='text'
+						ref={firstInputRef}
 						placeholder='Name'
 						className='rounded-md border p-2 text-black'
 						onChange={(e) => setGame({ ...game, name: e.target.value })}
@@ -107,7 +115,11 @@ function Home() {
 				<AnimatePresence mode='popLayout'>
 					<Reorder.Group axis='y' values={qtdData as any} onReorder={setQtdData}>
 						{qtdData?.map((game) => (
-							<Reorder.Item key={game.id} value={game}>
+							<Reorder.Item
+								key={game.id}
+								value={game}
+								whileDrag={{ opacity: 0.5, scale: 0.9 }}
+								className='cursor-grab active:cursor-grabbing'>
 								<motion.div
 									layout
 									className='mb-5 rounded-md border p-2'
@@ -116,7 +128,7 @@ function Home() {
 									exit={{ scale: 0.8, opacity: 0 }}
 									transition={{ type: 'tween' }}>
 									<button
-										className='rounded-md bg-red-500 px-3 py-2 text-white'
+										className='rounded-md bg-red-500 px-3 py-2 text-white transition hover:bg-red-700'
 										onClick={() => deleteGameMutation.mutate(game.id)}>
 										Delete
 									</button>
