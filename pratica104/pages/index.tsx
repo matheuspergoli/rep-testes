@@ -37,6 +37,8 @@ function Home() {
 	const { data } = useQuery<IGames[]>({ queryKey: 'games', queryFn: getGames })
 	const [qtdData, setQtdData] = React.useState(data)
 
+	console.log(session)
+
 	const addGameMutation = useMutation(addGames, {
 		onSuccess: () => {
 			queryClient.invalidateQueries('games')

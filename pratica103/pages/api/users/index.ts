@@ -1,7 +1,6 @@
 import bcrypt from 'bcrypt'
 import { PrismaClient } from '@prisma/client'
 import { NextApiRequest, NextApiResponse } from 'next'
-import { createUserToken } from '../../../helpers/create-user-token'
 
 const prisma = new PrismaClient()
 
@@ -51,8 +50,10 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse) 
 					}
 				})
 
-				createUserToken(user, req, res)
+				// createUserToken(user, req, res)
+				return res.status(201).json({ message: 'User created' })
 			} catch (error) {
+				console.log(error)
 				res.status(500).json({ error })
 			}
 			break

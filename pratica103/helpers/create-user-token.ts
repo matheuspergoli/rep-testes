@@ -16,6 +16,7 @@ export const createUserToken = async (user: User, req: NextApiRequest, res: Next
 	res.status(201).json({
 		message: 'User Authenticated',
 		id: user.id,
+		name: user.name,
 		token
 	})
 }

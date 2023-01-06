@@ -1,11 +1,14 @@
 import React from 'react'
 import Head from 'next/head'
+import { useRouter } from 'next/router'
 import { Formik, Form, Field } from 'formik'
 import { useQueryClient, useMutation } from 'react-query'
 import { createUser, authUser, getUser } from '../services'
 import { createUserValidation } from '../validations/createUserValidation'
 
 function Home() {
+	const router = useRouter()
+
 	return (
 		<>
 			<Head>
@@ -30,23 +33,25 @@ function Home() {
 							return
 						}
 
-						const session = await authUser(credentials.data.token)
-						if (session.response.status !== 200) {
-							alert('Erro ao autenticar usuário')
-							setFieldValue('email', '')
-							setFieldValue('password', '')
-							return
-						}
+						// const session = await authUser(credentials.data.token)
+						// if (session.response.status !== 200) {
+						// 	alert('Erro ao autenticar usuário')
+						// 	setFieldValue('email', '')
+						// 	setFieldValue('password', '')
+						// 	return
+						// }
 
-						const userSession = await getUser(session.data.id)
-						if (userSession.response.status !== 200) {
-							alert('Erro ao buscar usuário')
-							setFieldValue('email', '')
-							setFieldValue('password', '')
-							return
-						}
+						// const userSession = await getUser(session.data.id)
+						// if (userSession.response.status !== 200) {
+						// 	alert('Erro ao buscar usuário')
+						// 	setFieldValue('email', '')
+						// 	setFieldValue('password', '')
+						// 	return
+						// }
 
-						alert(`Usuário ${userSession.data.user.name} cadastrado com sucesso!`)
+						router.push('/login')
+
+						// alert(`Usuário ${userSession.data.user.name} cadastrado com sucesso!`)
 						resetForm()
 
 						setSubmitting(false)
