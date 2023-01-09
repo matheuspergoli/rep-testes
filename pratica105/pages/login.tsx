@@ -24,7 +24,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 	if (userCredentials) {
 		return {
 			redirect: {
-				destination: '/dashboard',
+				destination: '/auth/dashboard',
 				permanent: false
 			}
 		}
@@ -58,7 +58,7 @@ const Login = () => {
 							return
 						}
 						setTimeout(() => {
-							Router.push('/dashboard')
+							Router.push('/auth/dashboard')
 						}, 500)
 					}}>
 					{({ isSubmitting, errors, touched }) => (

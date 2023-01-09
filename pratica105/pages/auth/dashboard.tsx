@@ -4,7 +4,7 @@ import nookies from 'nookies'
 import jwt from 'jsonwebtoken'
 import Router from 'next/router'
 import { GetServerSideProps } from 'next'
-import { AuthContext } from '../context/AuthContext'
+import { AuthContext } from '../../context/AuthContext'
 
 interface TokenDecoded {
 	user: {
