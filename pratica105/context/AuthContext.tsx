@@ -12,6 +12,7 @@ interface SignUpResponse {
 	name: string
 	email: string
 	password: string
+	error: string
 }
 
 interface SiginInResponse {
@@ -20,6 +21,7 @@ interface SiginInResponse {
 	email: string
 	token: string
 	message: string
+	error: string
 }
 
 interface AuthContextType {
@@ -45,30 +47,39 @@ export const AuthProvider = (props: { children: React.ReactNode }) => {
 	}, [session])
 
 	async function signUp(user: User) {
-		const response = await fetch('/api/register', {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json'
-			},
-			body: JSON.stringify(user)
-		})
-		const data = response.json()
-		return data
+		try {
+			const response = await fetch('/api/register', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify(user)
+			})
+			nookies.destroy(undefined, 'USER_TOKEN')
+			const data = response.json()
+			return data
+		} catch (error) {
+			console.log(error)
+		}
 	}
 
 	async function signIn(email: string, password: string) {
-		const response = await fetch('/api/login', {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json'
-			},
-			body: JSON.stringify({ email, password })
-		})
-		const data = await response.json()
+		try {
+			const response = await fetch('/api/login', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify({ email, password })
+			})
+			const data = await response.json()
 
-		setSession(data)
+			setSession(data)
 
-		return data
+			return data
+		} catch (error) {
+			console.log(error)
+		}
 	}
 
 	function signOut() {

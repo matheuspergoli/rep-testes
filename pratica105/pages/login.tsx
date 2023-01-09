@@ -1,37 +1,42 @@
 import React from 'react'
 import Head from 'next/head'
 import nookies from 'nookies'
+import jwt from 'jsonwebtoken'
 import Router from 'next/router'
 import { GetServerSideProps } from 'next'
+import { Formik, Field, Form } from 'formik'
 import { AuthContext } from '../context/AuthContext'
+import { loginSchema } from '../validation/loginSchema'
+import { toFormikValidationSchema } from 'zod-formik-adapter'
+
+interface TokenDecoded {
+	user: {
+		id: string
+		name: string
+		email: string
+	}
+}
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
 	const cookies = nookies.get(context)
-	if (cookies.USER_TOKEN) {
+	const userCredentials = jwt.decode(cookies.USER_TOKEN) as TokenDecoded
+
+	if (userCredentials) {
 		return {
 			redirect: {
 				destination: '/dashboard',
 				permanent: false
 			}
 		}
+	} else {
+		return {
+			props: {}
+		}
 	}
-
-	return {
-		props: {}
-	}
-}
-
-interface User {
-	email: string
-	password: string
 }
 
 const Login = () => {
 	const { signIn } = React.useContext(AuthContext)
-	const [user, setUser] = React.useState<User>({
-		email: '',
-		password: ''
-	})
 
 	return (
 		<>
@@ -40,32 +45,43 @@ const Login = () => {
 			</Head>
 			<main className='container mx-auto'>
 				<h1 className='mb-5 text-3xl font-bold'>Login</h1>
-				<form
-					className='flex flex-col gap-5'
-					onSubmit={async (e) => {
-						e.preventDefault()
-						await signIn(user.email, user.password)
-						setUser({ email: '', password: '' })
-						Router.push('/dashboard')
+				<Formik
+					initialValues={{
+						email: '',
+						password: ''
+					}}
+					validationSchema={toFormikValidationSchema(loginSchema)}
+					onSubmit={async (values) => {
+						const response = await signIn(values.email, values.password)
+						if (response.error) {
+							alert(response.error)
+							return
+						}
+						setTimeout(() => {
+							Router.push('/dashboard')
+						}, 500)
 					}}>
-					<input
-						type='email'
-						className='w-60 rounded-md border p-3'
-						placeholder='Email'
-						value={user.email}
-						onChange={(e) => setUser({ ...user, email: e.target.value })}
-					/>
-					<input
-						type='password'
-						className='w-60 rounded-md border p-3'
-						placeholder='Password'
-						value={user.password}
-						onChange={(e) => setUser({ ...user, password: e.target.value })}
-					/>
-					<button type='submit' className='w-60 rounded-md border bg-blue-500 p-3 text-white'>
-						Login
-					</button>
-				</form>
+					{({ isSubmitting, errors, touched }) => (
+						<Form>
+							<div className='flex flex-col gap-5'>
+								<div>
+									<Field type='email' name='email' className='w-60 rounded-md border p-3' placeholder='Email' />
+									{errors.email && touched.email ? <p className='text-red-500'>{errors.email}</p> : null}
+								</div>
+								<div>
+									<Field type='password' name='password' className='w-60 rounded-md border p-3' placeholder='Senha' />
+									{errors.password && touched.password ? <p className='text-red-500'>{errors.password}</p> : null}
+								</div>
+								<button
+									type='submit'
+									disabled={isSubmitting}
+									className='w-60 rounded-md border bg-blue-500 p-3 font-bold text-white disabled:bg-opacity-75'>
+									{isSubmitting ? 'Carregando...' : 'Login'}
+								</button>
+							</div>
+						</Form>
+					)}
+				</Formik>
 			</main>
 		</>
 	)

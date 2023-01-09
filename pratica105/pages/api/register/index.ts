@@ -33,7 +33,7 @@ async function register(req: NextApiRequest, res: NextApiResponse) {
 					return res.status(400).json({ error: 'User already exists' })
 				}
 
-				const salt = await bcrypt.genSalt(10)
+				const salt = await bcrypt.genSalt(12)
 				const hashedPassword = await bcrypt.hash(password, salt)
 
 				const user = await prisma.user.create({

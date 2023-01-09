@@ -33,6 +33,15 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
 	const userCredentials = jwt.decode(cookies.USER_TOKEN) as TokenDecoded
 
+	if (!userCredentials) {
+		return {
+			redirect: {
+				destination: '/',
+				permanent: false
+			}
+		}
+	}
+
 	return {
 		props: {
 			user: {

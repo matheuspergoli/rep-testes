@@ -1,21 +1,14 @@
 import React from 'react'
 import Head from 'next/head'
+import Link from 'next/link'
 import Router from 'next/router'
+import { Formik, Field, Form } from 'formik'
 import { AuthContext } from '../context/AuthContext'
-
-interface User {
-	name: string
-	email: string
-	password: string
-}
+import { toFormikValidationSchema } from 'zod-formik-adapter'
+import { registerSchema } from '../validation/registerSchema'
 
 function Home() {
 	const { signUp } = React.useContext(AuthContext)
-	const [user, setUser] = React.useState<User>({
-		name: '',
-		email: '',
-		password: ''
-	})
 
 	return (
 		<>
@@ -24,39 +17,52 @@ function Home() {
 			</Head>
 			<main className='container mx-auto'>
 				<h1 className='mb-5 text-2xl font-bold'>Página de Cadastro</h1>
-				<form
-					className='flex flex-col gap-5'
-					onSubmit={async (e) => {
-						e.preventDefault()
-						await signUp(user)
-						setUser({ name: '', email: '', password: '' })
-						Router.push('/login')
+				<Formik
+					initialValues={{
+						name: '',
+						email: '',
+						password: ''
+					}}
+					validationSchema={toFormikValidationSchema(registerSchema)}
+					onSubmit={async (values) => {
+						const response = await signUp(values)
+						if (response.error) {
+							alert(response.error)
+							return
+						} else {
+							Router.push('/login')
+						}
 					}}>
-					<input
-						type='text'
-						className='w-60 rounded-md border p-3'
-						placeholder='Nome'
-						value={user.name}
-						onChange={(e) => setUser({ ...user, name: e.target.value })}
-					/>
-					<input
-						type='email'
-						className='w-60 rounded-md border p-3'
-						placeholder='Email'
-						value={user.email}
-						onChange={(e) => setUser({ ...user, email: e.target.value })}
-					/>
-					<input
-						type='password'
-						className='w-60 rounded-md border p-3'
-						placeholder='Senha'
-						value={user.password}
-						onChange={(e) => setUser({ ...user, password: e.target.value })}
-					/>
-					<button type='submit' className='w-60 rounded-md border bg-blue-500 p-3 text-white'>
-						Cadastrar
-					</button>
-				</form>
+					{({ isSubmitting, errors, touched }) => (
+						<Form>
+							<div className='flex flex-col gap-5'>
+								<div>
+									<Field type='text' name='name' className='w-60 rounded-md border p-3' placeholder='Nome' />
+									{errors.name && touched.name ? <p className='text-red-500'>{errors.name}</p> : null}
+								</div>
+								<div>
+									<Field type='email' name='email' className='w-60 rounded-md border p-3' placeholder='Email' />
+									{errors.email && touched.email ? <p className='text-red-500'>{errors.email}</p> : null}
+								</div>
+								<div>
+									<Field type='password' name='password' className='w-60 rounded-md border p-3' placeholder='Senha' />
+									{errors.password && touched.password ? <p className='text-red-500'>{errors.password}</p> : null}
+								</div>
+								<button
+									type='submit'
+									disabled={isSubmitting}
+									className='w-60 rounded-md border bg-blue-500 p-3 font-bold text-white disabled:bg-opacity-75'>
+									{isSubmitting ? 'Carregando...' : 'Cadastrar'}
+								</button>
+							</div>
+						</Form>
+					)}
+				</Formik>
+				<Link
+					href='/login'
+					className='mt-10 block w-60 rounded-md border bg-blue-500 p-3 text-center font-bold text-white disabled:bg-opacity-75'>
+					Faça login
+				</Link>
 			</main>
 		</>
 	)
