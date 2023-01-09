@@ -1,7 +1,7 @@
 import React from 'react'
 import nookies from 'nookies'
 
-interface User {
+interface UserSignUp {
 	name: string
 	email: string
 	password: string
@@ -15,7 +15,7 @@ interface SignUpResponse {
 	error: string
 }
 
-interface SiginInResponse {
+interface SignInResponse {
 	id: string
 	name: string
 	email: string
@@ -25,28 +25,29 @@ interface SiginInResponse {
 }
 
 interface AuthContextType {
-	isAuthenticated: boolean
+	user: User | undefined
+	setUser: React.Dispatch<React.SetStateAction<User | undefined>>
 	signOut: () => void
-	signUp: (user: User) => Promise<SignUpResponse>
-	signIn: (email: string, password: string) => Promise<SiginInResponse>
+	signUp: (user: UserSignUp) => Promise<SignUpResponse>
+	signIn: (email: string, password: string) => Promise<SignInResponse>
 }
 
 export const AuthContext = React.createContext({} as AuthContextType)
 
 export const AuthProvider = (props: { children: React.ReactNode }) => {
-	const [session, setSession] = React.useState<SiginInResponse>()
-
-	const isAuthenticated = false
+	const [user, setUser] = React.useState<User | undefined>(undefined)
+	const [session, setSession] = React.useState<SignInResponse>()
 
 	React.useEffect(() => {
 		if (session) {
 			nookies.set(undefined, 'USER_TOKEN', session?.token, {
-				maxAge: 60 * 60
+				maxAge: 60 * 60 * 24 * 7 // 7 days
 			})
+			setUser(session)
 		}
 	}, [session])
 
-	async function signUp(user: User) {
+	async function signUp(user: UserSignUp) {
 		try {
 			const response = await fetch('/api/register', {
 				method: 'POST',
@@ -84,10 +85,11 @@ export const AuthProvider = (props: { children: React.ReactNode }) => {
 
 	function signOut() {
 		nookies.destroy(undefined, 'USER_TOKEN')
+		setUser(undefined)
 		setSession(undefined)
 	}
 
 	return (
-		<AuthContext.Provider value={{ isAuthenticated, signIn, signUp, signOut }}>{props.children}</AuthContext.Provider>
+		<AuthContext.Provider value={{ signIn, signUp, signOut, user, setUser }}>{props.children}</AuthContext.Provider>
 	)
 }

@@ -6,9 +6,18 @@ import { Formik, Field, Form } from 'formik'
 import { AuthContext } from '../context/AuthContext'
 import { toFormikValidationSchema } from 'zod-formik-adapter'
 import { registerSchema } from '../validation/registerSchema'
+import { getServerSideProps } from '../helpers/getServerSideCookie'
 
-function Home() {
-	const { signUp } = React.useContext(AuthContext)
+export { getServerSideProps }
+
+function Home(props: TokenDecoded) {
+	const { signUp, setUser, user } = React.useContext(AuthContext)
+
+	React.useEffect(() => {
+		if (props.user) {
+			setUser(props.user)
+		}
+	}, [props.user, setUser])
 
 	return (
 		<>
@@ -17,6 +26,8 @@ function Home() {
 			</Head>
 			<main className='container mx-auto'>
 				<h1 className='mb-5 text-2xl font-bold'>Página de Cadastro</h1>
+				{user ? user.name : null}
+
 				<Formik
 					initialValues={{
 						name: '',
