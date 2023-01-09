@@ -1,32 +1,43 @@
 import React from 'react'
 import Head from 'next/head'
 import Link from 'next/link'
+import nookies from 'nookies'
+import jwt from 'jsonwebtoken'
 import Router from 'next/router'
+import { GetServerSideProps } from 'next'
 import { Formik, Field, Form } from 'formik'
 import { AuthContext } from '../context/AuthContext'
 import { toFormikValidationSchema } from 'zod-formik-adapter'
 import { registerSchema } from '../validation/registerSchema'
-import { getServerSideProps } from '../helpers/getServerSideCookie'
 
-export { getServerSideProps }
+export const getServerSideProps: GetServerSideProps = async (context) => {
+	const cookies = nookies.get(context)
+	const userCredentials = jwt.decode(cookies.USER_TOKEN) as TokenDecoded
 
-function Home(props: TokenDecoded) {
-	const { signUp, setUser, user } = React.useContext(AuthContext)
-
-	React.useEffect(() => {
-		if (props.user) {
-			setUser(props.user)
+	if (userCredentials) {
+		return {
+			redirect: {
+				destination: '/auth/dashboard',
+				permanent: false
+			}
 		}
-	}, [props.user, setUser])
+	} else {
+		return {
+			props: {}
+		}
+	}
+}
+
+function Home() {
+	const { signUp } = React.useContext(AuthContext)
 
 	return (
 		<>
 			<Head>
 				<title>NextJS App</title>
 			</Head>
-			<main className='container mx-auto'>
-				<h1 className='mb-5 text-2xl font-bold'>Página de Cadastro</h1>
-				{user ? user.name : null}
+			<main className='container mx-auto flex flex-col items-center justify-center pt-60'>
+				<h1 className='mb-5 text-2xl font-bold'>Cadastre-se na plataforma. &copy;</h1>
 
 				<Formik
 					initialValues={{
@@ -45,35 +56,36 @@ function Home(props: TokenDecoded) {
 						}
 					}}>
 					{({ isSubmitting, errors, touched }) => (
-						<Form>
-							<div className='flex flex-col gap-5'>
+						<Form className='w-full max-w-lg'>
+							<div className='flex flex-col gap-2'>
 								<div>
-									<Field type='text' name='name' className='w-60 rounded-md border p-3' placeholder='Nome' />
+									<Field type='text' name='name' className='w-full rounded-md border p-3' placeholder='Nome' />
 									{errors.name && touched.name ? <p className='text-red-500'>{errors.name}</p> : null}
 								</div>
 								<div>
-									<Field type='email' name='email' className='w-60 rounded-md border p-3' placeholder='Email' />
+									<Field type='email' name='email' className='w-full rounded-md border p-3' placeholder='Email' />
 									{errors.email && touched.email ? <p className='text-red-500'>{errors.email}</p> : null}
 								</div>
 								<div>
-									<Field type='password' name='password' className='w-60 rounded-md border p-3' placeholder='Senha' />
+									<Field type='password' name='password' className='w-full rounded-md border p-3' placeholder='Senha' />
 									{errors.password && touched.password ? <p className='text-red-500'>{errors.password}</p> : null}
 								</div>
+								<p className='text-right text-blue-800'>
+									Já tem uma conta?{' '}
+									<Link href='/login' className='font-semibold underline'>
+										Faça login
+									</Link>
+								</p>
 								<button
 									type='submit'
 									disabled={isSubmitting}
-									className='w-60 rounded-md border bg-blue-500 p-3 font-bold text-white disabled:bg-opacity-75'>
+									className='w-full rounded-md border bg-blue-500 p-3 font-bold text-white disabled:bg-opacity-75'>
 									{isSubmitting ? 'Carregando...' : 'Cadastrar'}
 								</button>
 							</div>
 						</Form>
 					)}
 				</Formik>
-				<Link
-					href='/login'
-					className='mt-10 block w-60 rounded-md border bg-blue-500 p-3 text-center font-bold text-white disabled:bg-opacity-75'>
-					Faça login
-				</Link>
 			</main>
 		</>
 	)
