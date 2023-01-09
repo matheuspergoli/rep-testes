@@ -1,12 +1,23 @@
-import jwt from 'jsonwebtoken'
+import * as jose from 'jose'
 import { NextRequest, NextResponse } from 'next/server'
 
 export const middleware = async (req: NextRequest) => {
-	const cookies = req.cookies.get('USER_TOKEN')?.value
+	const url = req.nextUrl.clone()
+	url.pathname = '/login'
 
-	if (cookies) {
-		const decoded = jwt.verify(cookies, process.env.NEXT_PUBLIC_JWT_SECRET as string)
-		console.log(decoded)
+	const token = req.cookies.get('USER_TOKEN')?.value as string
+
+	const secret = new TextEncoder().encode(process.env.NEXT_PUBLIC_JWT_SECRET)
+
+	try {
+		const { payload } = await jose.jwtVerify(token, secret)
+		return NextResponse.next({
+			headers: {
+				'x-user-token': token
+			}
+		})
+	} catch (error) {
+		return NextResponse.redirect(url)
 	}
 }
 
