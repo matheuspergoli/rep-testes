@@ -20,7 +20,7 @@ async function register(req: NextApiRequest, res: NextApiResponse) {
 				const { name, email, password } = registerSchema.parse(req.body)
 
 				if (!name || !email || !password) {
-					return res.status(400).json({ error: 'Please enter all fields' })
+					return res.status(400).json({ error: 'Preencha todos os campos' })
 				}
 
 				const userExists = await prisma.user.findUnique({
@@ -30,7 +30,7 @@ async function register(req: NextApiRequest, res: NextApiResponse) {
 				})
 
 				if (userExists) {
-					return res.status(400).json({ error: 'User already exists' })
+					return res.status(400).json({ error: 'Usuário indisponível' })
 				}
 
 				const salt = await bcrypt.genSalt(12)

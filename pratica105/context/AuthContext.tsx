@@ -38,14 +38,14 @@ export const AuthProvider = (props: { children: React.ReactNode }) => {
 	const [user, setUser] = React.useState<User | undefined>(undefined)
 	const [session, setSession] = React.useState<SignInResponse>()
 
-	React.useEffect(() => {
-		if (session) {
-			nookies.set(undefined, 'USER_TOKEN', session?.token, {
-				maxAge: 60 * 60 * 24 * 7 // 7 days
-			})
-			setUser(session)
-		}
-	}, [session])
+	// React.useEffect(() => {
+	// 	if (session) {
+	// 		nookies.set(undefined, 'USER_TOKEN', session?.token, {
+	// 			maxAge: 60 * 60 * 24 * 7 // 7 days
+	// 		})
+	// 		setUser(session)
+	// 	}
+	// }, [session])
 
 	async function signUp(user: UserSignUp) {
 		try {
@@ -74,9 +74,10 @@ export const AuthProvider = (props: { children: React.ReactNode }) => {
 				body: JSON.stringify({ email, password })
 			})
 			const data = await response.json()
-
 			setSession(data)
-
+			nookies.set(undefined, 'USER_TOKEN', data?.token, {
+				maxAge: 60 * 60 * 24 * 7 // 7 days
+			})
 			return data
 		} catch (error) {
 			console.log(error)
@@ -84,7 +85,9 @@ export const AuthProvider = (props: { children: React.ReactNode }) => {
 	}
 
 	function signOut() {
-		nookies.destroy(undefined, 'USER_TOKEN')
+		nookies.destroy({}, 'USER_TOKEN', {
+			path: '/'
+		})
 		setUser(undefined)
 		setSession(undefined)
 	}

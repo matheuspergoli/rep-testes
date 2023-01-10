@@ -20,7 +20,7 @@ async function login(req: NextApiRequest, res: NextApiResponse) {
 				const { email, password } = loginSchema.parse(req.body)
 
 				if (!email || !password) {
-					return res.status(400).json({ error: 'Please enter all fields' })
+					return res.status(400).json({ error: 'Preencha todos os campos' })
 				}
 
 				const user = await prisma.user.findUnique({
@@ -30,13 +30,13 @@ async function login(req: NextApiRequest, res: NextApiResponse) {
 				})
 
 				if (!user) {
-					return res.status(400).json({ error: 'User does not exist' })
+					return res.status(400).json({ error: 'Usuário não existe' })
 				}
 
 				const isMatch = await bcrypt.compare(password, user.password)
 
 				if (!isMatch) {
-					return res.status(400).json({ error: 'Invalid credentials' })
+					return res.status(400).json({ error: 'Credenciais incorretas' })
 				}
 
 				createUserToken(user, req, res)
