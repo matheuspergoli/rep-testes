@@ -36,8 +36,8 @@ const Login = () => {
 			<Head>
 				<title>NextJS App</title>
 			</Head>
-			<main className='container mx-auto flex flex-col items-center justify-center pt-60'>
-				<h1 className='mb-5 text-2xl font-bold'>Faça login com sua conta. &copy;</h1>
+			<main className='container mx-auto flex flex-col items-center justify-center px-3 pt-60 sm:px-0'>
+				<h1 className='mb-5 text-xl font-bold sm:text-2xl'>Faça login com sua conta. &copy;</h1>
 				<Formik
 					initialValues={{
 						email: '',
